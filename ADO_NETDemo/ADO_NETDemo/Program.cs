@@ -1,4 +1,5 @@
 ﻿using ADO_NETDemo.DAL;
+using ADO_NETDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,26 +38,30 @@ namespace ADO_NETDemo
             //}
             //objReader.Close();//关闭读取器，同时自动关闭关联的连接
 
-            Console.WriteLine("输入学员姓名：");
-            string stuName = Console.ReadLine();
-            Console.WriteLine("输入学员性别：");
-            string gender = Console.ReadLine();
-            Console.WriteLine("输入学员出生日期：");
-            DateTime birthday = Convert.ToDateTime(Console.ReadLine());
-            Console.WriteLine("输入学员身份证：");
-            string stuIdNo = Console.ReadLine();
-            Console.WriteLine("输入学员年龄：");
-            int age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("输入学员电话：");
-            string phoneNumber = Console.ReadLine();
-            Console.WriteLine("输入学员地址：");
-            string stuAddress = Console.ReadLine();
-            Console.WriteLine("输入学员班级编号：");
-            int classId = Convert.ToInt32(Console.ReadLine());
+            //Student objStu = new Student();
+            //Console.WriteLine("输入学员姓名：");
+            //objStu.StudentName = Console.ReadLine();
+            //Console.WriteLine("输入学员性别：");
+            //objStu.Gender = Console.ReadLine();
+            //Console.WriteLine("输入学员出生日期：");
+            //objStu.Birthday = Convert.ToDateTime(Console.ReadLine());
+            //Console.WriteLine("输入学员身份证：");
+            //objStu.StudentIdNo = Convert.ToDecimal(Console.ReadLine());
+            //Console.WriteLine("输入学员年龄：");
+            //objStu.Age = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("输入学员电话：");
+            //objStu.PhoneNumber = Console.ReadLine();
+            //Console.WriteLine("输入学员地址：");
+            //objStu.StudentAddress = Console.ReadLine();
+            //Console.WriteLine("输入学员班级编号：");
+            //objStu.ClassId = Convert.ToInt32(Console.ReadLine());
+            //StudentService objStudentService = new StudentService();
+            //int result = objStudentService.AddStudent(objStu);
+            //Console.WriteLine(result);
 
-            StudentService objStudentService = new StudentService();
-            int result = objStudentService.AddStudent(stuName, gender, birthday, stuIdNo, age, phoneNumber, stuAddress, classId);
-            Console.WriteLine(result);
+            StudentService objStuService = new StudentService();
+            Student objStudent = objStuService.GetStudentById("10004");
+            Console.WriteLine(objStudent.StudentName +'\t'+objStudent.StudentIdNo);
             
             Console.ReadLine();
         }

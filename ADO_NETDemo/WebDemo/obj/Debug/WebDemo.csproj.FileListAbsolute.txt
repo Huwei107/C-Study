@@ -1,0 +1,8 @@
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\bin\WebDemo.dll.config
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\bin\WebDemo.dll
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\bin\WebDemo.pdb
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\bin\ADO_NETDemo.exe
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\bin\ADO_NETDemo.pdb
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\obj\Debug\WebDemo.csprojResolveAssemblyReference.cache
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\obj\Debug\WebDemo.dll
+D:\StudyProject\C#FDemo\ADO_NETDemo\WebDemo\obj\Debug\WebDemo.pdb

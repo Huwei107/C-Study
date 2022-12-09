@@ -4,3 +4,9 @@ D:\StudyProject\C#FDemo\ADO_NETDemo\ADO_NETDemo\bin\Debug\ADO_NETDemo.pdb
 D:\StudyProject\C#FDemo\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.exe
 D:\StudyProject\C#FDemo\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.pdb
 D:\StudyProject\C#FDemo\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.csprojResolveAssemblyReference.cache
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\bin\Debug\ADO_NETDemo.exe.config
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.exe
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.pdb
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\bin\Debug\ADO_NETDemo.exe
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\bin\Debug\ADO_NETDemo.pdb
+D:\StudyProject\C-Study\ADO_NETDemo\ADO_NETDemo\obj\Debug\ADO_NETDemo.csprojResolveAssemblyReference.cache
