@@ -17,15 +17,22 @@ namespace ADO_NETDemo
             //Console.WriteLine(result);
             //Console.ReadLine();
 
-            string sql = string.Format(@"update Students set StudentName='刘晶晶' where StudentId=10005");
-            int result = SQLHelper.Update(sql);
-            if (result == 1)
+            //string sql = string.Format(@"update Students set StudentName='刘晶晶' where StudentId=10005");
+            //int result = SQLHelper.Update(sql);
+            //if (result == 1)
+            //{
+            //    Console.WriteLine("成功！");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("失败！");
+            //}
+
+            string sql = string.Format(@"select StudentName from Students");
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
             {
-                Console.WriteLine("成功！");
-            }
-            else
-            {
-                Console.WriteLine("失败！");
+                Console.WriteLine(objReader["StudentName"]);
             }
             
             Console.ReadLine();

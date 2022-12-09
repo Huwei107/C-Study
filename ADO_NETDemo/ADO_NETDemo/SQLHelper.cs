@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,19 @@ namespace ADO_NETDemo
             int result = cmd.ExecuteNonQuery();
             conn.Close();
             return result;
+        }
+
+        /// <summary>
+        /// 返回一个结果集
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static SqlDataReader GetReader(string sql)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            conn.Open();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }
 }
