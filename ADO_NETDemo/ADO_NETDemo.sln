@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO_NETDemo", "ADO_NETDemo\ADO_NETDemo.csproj", "{82E88973-2C7C-433C-9A06-61E1A8BD9E1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFDemo", "WFDemo\WFDemo.csproj", "{235CB9E0-4994-476B-918E-444C27053D3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{82E88973-2C7C-433C-9A06-61E1A8BD9E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82E88973-2C7C-433C-9A06-61E1A8BD9E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82E88973-2C7C-433C-9A06-61E1A8BD9E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235CB9E0-4994-476B-918E-444C27053D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235CB9E0-4994-476B-918E-444C27053D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235CB9E0-4994-476B-918E-444C27053D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235CB9E0-4994-476B-918E-444C27053D3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
