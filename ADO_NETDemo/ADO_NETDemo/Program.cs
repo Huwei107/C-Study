@@ -59,9 +59,18 @@ namespace ADO_NETDemo
             //int result = objStudentService.AddStudent(objStu);
             //Console.WriteLine(result);
 
-            StudentService objStuService = new StudentService();
-            Student objStudent = objStuService.GetStudentById("10004");
-            Console.WriteLine(objStudent.StudentName +'\t'+objStudent.StudentIdNo);
+            //StudentService objStuService = new StudentService();
+            //Student objStudent = objStuService.GetStudentById("10004");
+            //Console.WriteLine(objStudent.StudentName +'\t'+objStudent.StudentIdNo);
+            StudentService objStudentService = new StudentService();
+            List<Student> list = objStudentService.GetAllStudents();
+            if (list.Count != 0)
+            {
+                foreach (Student item in list)
+                {
+                    Console.WriteLine(item.StudentName + "  " + item.Gender + "  " + item.StudentAddress);
+                }
+            }
             
             Console.ReadLine();
         }

@@ -49,15 +49,69 @@ namespace ADO_NETDemo.DAL
             Student objStudent = null;
             if (objReader.Read())
             {
-                objStudent = new Student();
-                objStudent.StudentName = objReader["StudentName"].ToString();
-                objStudent.Gender = objReader["Gender"].ToString();
-                objStudent.Birthday = Convert.ToDateTime(objReader["Birthday"]);
-                objStudent.StudentIdNo = Convert.ToDecimal(objReader["StudentIdNo"]);
-                objStudent.StudentAddress = objReader["StudentAddress"].ToString();
+                objStudent = new Student()
+                {
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"]),
+                    StudentIdNo = Convert.ToDecimal(objReader["StudentIdNo"]),
+                    StudentAddress = objReader["StudentAddress"].ToString()
+                };
             }
             objReader.Close();
             return objStudent;
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            string sql = string.Format(@"select StudentName, Gender, Birthday,StudentIdNo, StudentAddress from Students");
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<Student> stuList = new List<Student>();
+            //while (objReader.Read())
+            //{
+            //    Student objStudent = new Student()
+            //    {
+            //        StudentName = objReader["StudentName"].ToString(),
+            //        Gender = objReader["Gender"].ToString(),
+            //        Birthday = Convert.ToDateTime(objReader["Birthday"]),
+            //        StudentIdNo = Convert.ToDecimal(objReader["StudentIdNo"]),
+            //        StudentAddress = objReader["StudentAddress"].ToString()
+            //    };
+            //    stuList.Add(objStudent);
+            //}
+            while (objReader.Read())
+            {
+                stuList.Add(new Student()
+                {
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"]),
+                    StudentIdNo = Convert.ToDecimal(objReader["StudentIdNo"]),
+                    StudentAddress = objReader["StudentAddress"].ToString()
+                });
+            }
+            objReader.Close();
+            return stuList;
+        }
+
+        public List<StudentExt> GetStudentExt()
+        {
+            string sql = string.Format(@"select Students.StudentId, StudentName, ClassName, CSharp, SQLServerDB from Students
+                                         inner join StudentClass on StudentClass.ClassId = Students.ClassId
+                                         inner join ScoreList on ScoreList.StudentId = Student.StudentId");
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<StudentExt> exList = new List<StudentExt>();
+            while (objReader.Read())
+            {
+                StudentExt ext = new StudentExt();
+                ext.ObjStudent.StudentId = Convert.ToInt32(objReader["StudentId"]);
+                ext.ObjStudent.StudentName = objReader["StudentName"].ToString();
+                ext.ObjClass.ClassName = objReader["ClassName"].ToString();
+                ext.objScore.CSharp = Convert.ToInt32(objReader["CSharp"]);
+                ext.objScore.SQLServerDB = Convert.ToInt32(objReader["SQLServerDB"]);
+                exList.Add(ext);
+            }
+
         }
     }
 }
