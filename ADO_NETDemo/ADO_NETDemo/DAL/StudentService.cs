@@ -98,7 +98,7 @@ namespace ADO_NETDemo.DAL
         {
             string sql = string.Format(@"select Students.StudentId, StudentName, ClassName, CSharp, SQLServerDB from Students
                                          inner join StudentClass on StudentClass.ClassId = Students.ClassId
-                                         inner join ScoreList on ScoreList.StudentId = Student.StudentId");
+                                         inner join ScoreList on ScoreList.StudentId = Students.StudentId");
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<StudentExt> exList = new List<StudentExt>();
             while (objReader.Read())
@@ -111,7 +111,8 @@ namespace ADO_NETDemo.DAL
                 ext.objScore.SQLServerDB = Convert.ToInt32(objReader["SQLServerDB"]);
                 exList.Add(ext);
             }
-
+            objReader.Close();
+            return exList;
         }
     }
 }

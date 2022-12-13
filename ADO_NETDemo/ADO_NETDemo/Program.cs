@@ -62,14 +62,22 @@ namespace ADO_NETDemo
             //StudentService objStuService = new StudentService();
             //Student objStudent = objStuService.GetStudentById("10004");
             //Console.WriteLine(objStudent.StudentName +'\t'+objStudent.StudentIdNo);
+
+            //StudentService objStudentService = new StudentService();
+            //List<Student> list = objStudentService.GetAllStudents();
+            //if (list.Count != 0)
+            //{
+            //    foreach (Student item in list)
+            //    {
+            //        Console.WriteLine(item.StudentName + "  " + item.Gender + "  " + item.StudentAddress);
+            //    }
+            //}
+
             StudentService objStudentService = new StudentService();
-            List<Student> list = objStudentService.GetAllStudents();
-            if (list.Count != 0)
+            List<StudentExt> list = objStudentService.GetStudentExt();
+            foreach (StudentExt item in list)
             {
-                foreach (Student item in list)
-                {
-                    Console.WriteLine(item.StudentName + "  " + item.Gender + "  " + item.StudentAddress);
-                }
+                Console.WriteLine(item.ObjStudent.StudentName + "\t" + item.ObjClass.ClassName + "\t" + item.objScore.CSharp);
             }
             
             Console.ReadLine();
