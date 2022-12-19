@@ -73,11 +73,18 @@ namespace ADO_NETDemo
             //    }
             //}
 
-            StudentService objStudentService = new StudentService();
-            List<StudentExt> list = objStudentService.GetStudentExt();
-            foreach (StudentExt item in list)
+            //StudentService objStudentService = new StudentService();
+            //List<StudentExt> list = objStudentService.GetStudentExt();
+            //foreach (StudentExt item in list)
+            //{
+            //    Console.WriteLine(item.ObjStudent.StudentName + "\t" + item.ObjClass.ClassName + "\t" + item.objScore.CSharp);
+            //}
+
+            StudentService objStuService = new StudentService();
+            List<StudentSimpleExt> list = objStuService.GetStudentScore();
+            foreach (StudentSimpleExt item in list)
             {
-                Console.WriteLine(item.ObjStudent.StudentName + "\t" + item.ObjClass.ClassName + "\t" + item.objScore.CSharp);
+                Console.WriteLine(item.StudentId + '\t' + item.StudentName + '\t' + item.ClassName + '\t' + item.AvgScore);
             }
             
             Console.ReadLine();

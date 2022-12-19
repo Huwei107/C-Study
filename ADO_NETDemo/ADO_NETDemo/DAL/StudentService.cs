@@ -114,5 +114,26 @@ namespace ADO_NETDemo.DAL
             objReader.Close();
             return exList;
         }
+
+        public List<StudentSimpleExt> GetStudentScore()
+        {
+            string sql = string.Format(@"select Students.StudentId,StudentName,ClassName,AvgScore=(CSharp+SQLServerDB)/2 from Students
+                                       inner join StudentClass on Students.ClassId = StudentClass.ClassId
+                                       inner join ScoreList on ScoreList.StudentId = Students.StudentId");
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<StudentSimpleExt> list = new List<StudentSimpleExt>();
+            while (objReader.Read())
+            {
+                list.Add(new StudentSimpleExt()
+                {
+                    StudentName = objReader["StudentName"].ToString(),
+                    StudentId=Convert.ToInt32(objReader["StudentId"]),
+                    ClassName = objReader["ClassName"].ToString(),
+                    AvgScore = Convert.ToInt32(objReader["AvgScore"])
+                });
+            }
+            objReader.Close();
+            return list;
+        }
     }
 }
