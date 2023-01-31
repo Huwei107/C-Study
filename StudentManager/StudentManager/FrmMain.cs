@@ -27,11 +27,20 @@ namespace StudentManager
         //    objAddStudent.ShowDialog();
         //}
 
-   
+        public static FrmAddStudent objFrmAddStudent = null;
         private void tsmiAddStudent_Click(object sender, EventArgs e)
         {
-            FrmAddStudent objFrmAddStudent = new FrmAddStudent();
-            objFrmAddStudent.Show();
+            if (objFrmAddStudent == null)
+            {
+                objFrmAddStudent = new FrmAddStudent();
+                objFrmAddStudent.Show();
+            }
+            else
+            {
+                objFrmAddStudent.Activate();//激活只能在最小化的时候期作用
+                objFrmAddStudent.WindowState = FormWindowState.Normal;
+            }
+
         }
    
         private void tsmiManageStudent_Click(object sender, EventArgs e)
@@ -87,6 +96,15 @@ namespace StudentManager
         private void tsmi_Card_Click(object sender, EventArgs e)
         {
           
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认退出吗？", "提示",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
         }
 
 
