@@ -10,6 +10,8 @@ namespace StudentManager
 {
     public partial class FrmMain : Form
     {
+        public static FrmAddStudent objFrmAddStudent = null;//添加学员
+        public static FrmStudentManage objFrmStudentManage = null;//学员管理
         public FrmMain()
         {
             InitializeComponent();
@@ -27,7 +29,6 @@ namespace StudentManager
         //    objAddStudent.ShowDialog();
         //}
 
-        public static FrmAddStudent objFrmAddStudent = null;
         private void tsmiAddStudent_Click(object sender, EventArgs e)
         {
             if (objFrmAddStudent == null)
@@ -40,12 +41,20 @@ namespace StudentManager
                 objFrmAddStudent.Activate();//激活只能在最小化的时候期作用
                 objFrmAddStudent.WindowState = FormWindowState.Normal;
             }
-
         }
    
         private void tsmiManageStudent_Click(object sender, EventArgs e)
         {
-          
+            if (objFrmStudentManage == null)
+            {
+                objFrmStudentManage = new FrmStudentManage();
+                objFrmStudentManage.Show();
+            }
+            else
+            {
+                objFrmStudentManage.Activate();
+                objFrmStudentManage.WindowState = FormWindowState.Normal;
+            }
         }
         //显示成绩查询与分析窗口    
         private void tsmiQueryAndAnalysis_Click(object sender, EventArgs e)

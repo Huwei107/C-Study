@@ -6,15 +6,28 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-
+using Models;
+using DAL;
 
 namespace StudentManager
 {
     public partial class FrmEditStudent : Form
     {
+        private static StudentClassService objClassService = new StudentClassService();
+
         public FrmEditStudent()
         {
             InitializeComponent();
+
+            //初始化班级下拉框
+            this.cboClassName.DataSource = objClassService.GetAllClass();
+            this.cboClassName.DisplayMember = "ClassName";
+            this.cboClassName.ValueMember = "ClassId";
+        }
+
+        public FrmEditStudent(StudentExt objStudentExt):this()
+        {
+            
         }
  
 
