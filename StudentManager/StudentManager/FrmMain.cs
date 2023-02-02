@@ -12,6 +12,7 @@ namespace StudentManager
     {
         public static FrmAddStudent objFrmAddStudent = null;//添加学员
         public static FrmStudentManage objFrmStudentManage = null;//学员管理
+        public static FrmScoreManage objFrmScoreManage = null;//成绩管理
         public FrmMain()
         {
             InitializeComponent();
@@ -59,6 +60,16 @@ namespace StudentManager
         //显示成绩查询与分析窗口    
         private void tsmiQueryAndAnalysis_Click(object sender, EventArgs e)
         {
+            if (objFrmScoreManage == null)
+            {
+                objFrmScoreManage = new FrmScoreManage();
+                objFrmScoreManage.Show();
+            }
+            else
+            {
+                objFrmScoreManage.Activate();
+                objFrmScoreManage.WindowState = FormWindowState.Normal;
+            }
         }
         //退出系统
         private void tmiClose_Click(object sender, EventArgs e)

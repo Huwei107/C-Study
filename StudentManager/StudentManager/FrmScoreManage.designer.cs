@@ -295,6 +295,7 @@
             this.Name = "FrmScoreManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[成绩查询]";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmScoreManage_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoreList)).EndInit();
             this.gbStat.ResumeLayout(false);
             this.gbStat.PerformLayout();

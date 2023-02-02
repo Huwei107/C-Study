@@ -140,11 +140,11 @@ namespace DAL
         public int ModifyStudent(Student objStudent)
         {
             string sql = string.Format(@"update Students set StudentName='{0}',Gender='{1}',Birthday='{2}',StudentIdNo={3},Age={4},PhoneNumber={5},
-                                        StudentAddress='{6}',CardNo='{7}',ClassId={8} where StudentId={8}", objStudent.StudentName, objStudent.Gender,
+                                        StudentAddress='{6}',CardNo='{7}',ClassId={8} where StudentId={9}", objStudent.StudentName, objStudent.Gender,
                                                                                                            objStudent.Birthday, objStudent.StudentIdNo,
                                                                                                            objStudent.Age, objStudent.PhoneNumber,
                                                                                                            objStudent.StudentAddress, objStudent.CardNo,
-                                                                                                           objStudent.StudentId);
+                                                                                                           objStudent.ClassId, objStudent.StudentId);
             try
             {
                 return SQLHelper.Update(sql);
@@ -152,6 +152,32 @@ namespace DAL
             catch (SqlException ex)
             {
                 throw new Exception("数据库操作出现异常！具体信息：" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region 删除学员对象
+        public int DeleteStudentById(string studentId)
+        {
+            string sql = string.Format(@"delete from Students where StudentId={0}", studentId);
+            try
+            {
+                return SQLHelper.Update(sql);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    throw new Exception("该学号已被其他数据库引用，不能直接删除！");
+                }
+                else
+                {
+                    throw new Exception("数据库操作出现异常！具体信息：" + ex.Message);
+                }
             }
             catch (Exception ex)
             {

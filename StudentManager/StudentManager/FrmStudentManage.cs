@@ -76,7 +76,12 @@ namespace StudentManager
         //双击选中的学员对象并显示详细信息
         private void dgvStudentList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+            if (this.dgvStudentList.CurrentRow != null)
+            {
+                string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+                this.txtStudentId.Text = studentId;
+                btnQueryById_Click(null, null);
+            }
         }
         //修改学员对象
         private void btnEidt_Click(object sender, EventArgs e)
@@ -97,12 +102,43 @@ namespace StudentManager
             StudentExt objStudentExt = objStudentService.GetStudentById(studentId);
             //显示要修改的学员窗口
             FrmEditStudent objFrmEditStudent = new FrmEditStudent(objStudentExt);
-            objFrmEditStudent.ShowDialog();
+            DialogResult result = objFrmEditStudent.ShowDialog();
+            //判断修改是否成功
+            if (result == DialogResult.OK)
+            {
+                btnQuery_Click(null, null);
+            }
         }       
         //删除学员对象
         private void btnDel_Click(object sender, EventArgs e)
         {
-          
+            if (this.dgvStudentList.RowCount == 0)
+            {
+                MessageBox.Show("没有可以删除的信息！", "提示");
+                return;
+            }
+            if (this.dgvStudentList.CurrentRow == null)
+            {
+                MessageBox.Show("请选中要删除的学员信息！", "提示");
+                return;
+            }
+            string studentName = this.dgvStudentList.CurrentRow.Cells["StudentName"].Value.ToString();
+            DialogResult result = MessageBox.Show("确认删除学员["+studentName+"]吗？", "删除询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+                return;
+            //获取序号并删除
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+            try
+            {
+                if (objStudentService.DeleteStudentById(studentId) == 1)
+                {
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "提示");
+            }
         }
         private void FrmSearchStudent_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -112,6 +148,16 @@ namespace StudentManager
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tsmiModifyStu_Click(object sender, EventArgs e)
+        {
+            btnEidt_Click(null, null);
+        }
+
+        private void tsmidDeleteStu_Click(object sender, EventArgs e)
+        {
+            btnDel_Click(null, null);
         }
 
     }

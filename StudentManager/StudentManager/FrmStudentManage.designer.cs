@@ -156,19 +156,21 @@
             this.tsmiModifyStu,
             this.tsmidDeleteStu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // tsmiModifyStu
             // 
             this.tsmiModifyStu.Name = "tsmiModifyStu";
-            this.tsmiModifyStu.Size = new System.Drawing.Size(136, 22);
+            this.tsmiModifyStu.Size = new System.Drawing.Size(152, 22);
             this.tsmiModifyStu.Text = "修改学员(&M)";
+            this.tsmiModifyStu.Click += new System.EventHandler(this.tsmiModifyStu_Click);
             // 
             // tsmidDeleteStu
             // 
             this.tsmidDeleteStu.Name = "tsmidDeleteStu";
-            this.tsmidDeleteStu.Size = new System.Drawing.Size(136, 22);
+            this.tsmidDeleteStu.Size = new System.Drawing.Size(152, 22);
             this.tsmidDeleteStu.Text = "删除学员(&D)";
+            this.tsmidDeleteStu.Click += new System.EventHandler(this.tsmidDeleteStu_Click);
             // 
             // groupBox1
             // 
