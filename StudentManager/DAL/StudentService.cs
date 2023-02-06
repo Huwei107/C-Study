@@ -114,6 +114,48 @@ namespace DAL
             return objStudentExt;
         }
 
+        /// <summary>
+        /// 根据卡号查询学员对象
+        /// </summary>
+        /// <param name="cardNo"></param>
+        /// <returns></returns>
+        public StudentExt GetStudentByCardNo(string cardNo)
+        {
+            string whereSql = string.Format(@" where CardNo='{0}'", cardNo);
+            return this.GetStudent(whereSql);
+        }
+
+        /// <summary>
+        /// 查询学员
+        /// </summary>
+        /// <param name="whereSql"></param>
+        /// <returns></returns>
+        private StudentExt GetStudent(string whereSql)
+        {
+            string sql = string.Format(@"select StudentId,StudentName,Gender,Birthday,ClassName,StudentIdNo,PhoneNumber,StudentAddress,CardNo from Students
+                                         inner join StudentClass on Students.ClassId = StudentClass.ClassId
+                                         ");
+            sql += whereSql;
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StudentExt objStudentExt = null;
+            while (objReader.Read())
+            {
+                objStudentExt = new StudentExt()
+                {
+                    StudentId = Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"]),
+                    ClassName = objReader["ClassName"].ToString(),
+                    CardNo = objReader["CardNo"].ToString(),
+                    StudentIdNo = objReader["StudentIdNo"].ToString(),
+                    PhoneNumber = objReader["PhoneNumber"].ToString(),
+                    StudentAddress = objReader["StudentAddress"].ToString()
+                };
+            }
+            objReader.Close();
+            return objStudentExt;
+        }
 
         #endregion
 
