@@ -186,6 +186,7 @@
             this.Name = "FrmScoreQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[考试成绩快速浏览]";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmScoreQuery_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoreList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -13,6 +13,7 @@ namespace StudentManager
         public static FrmAddStudent objFrmAddStudent = null;//添加学员
         public static FrmStudentManage objFrmStudentManage = null;//学员管理
         public static FrmScoreManage objFrmScoreManage = null;//成绩管理
+        public static FrmScoreQuery objFrmScoreQuery = null;//成绩快速查询
         public FrmMain()
         {
             InitializeComponent();
@@ -80,7 +81,16 @@ namespace StudentManager
         //成绩快速查询
         private void tsmiQuery_Click(object sender, EventArgs e)
         {
-       
+            if (objFrmScoreQuery == null)
+            {
+                objFrmScoreQuery = new FrmScoreQuery();
+                objFrmScoreQuery.Show();
+            }
+            else
+            {
+                objFrmScoreQuery.Activate();
+                objFrmScoreQuery.WindowState = FormWindowState.Normal;
+            }
         }
         //密码修改
         private void tmiModifyPwd_Click(object sender, EventArgs e)

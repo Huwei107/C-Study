@@ -89,5 +89,20 @@ namespace DAL
         }
 
         #endregion
+
+        #region 基于DataSet的数据查询
+        /// <summary>
+        /// 获取所有考试信息 
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetAllScoreList()
+        {
+            string sql = string.Format(@"select a.StudentId, a.StudentName, b.ClassName, c.CSharp, c.SQLServerDB
+                                         from Students a
+                                         inner join StudentClass b on b.ClassId = a.ClassId
+                                         inner join ScoreList c on c.StudentId = a.StudentId");
+            return SQLHelper.GetDataSet(sql);
+        }
+        #endregion
     }
 }
