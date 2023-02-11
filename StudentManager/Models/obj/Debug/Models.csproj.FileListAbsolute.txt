@@ -1,9 +1,0 @@
-D:\StudyProject\C#FDemo\StudentManager\Models\bin\Debug\Models.dll
-D:\StudyProject\C#FDemo\StudentManager\Models\bin\Debug\Models.pdb
-D:\StudyProject\C#FDemo\StudentManager\Models\obj\Debug\Models.dll
-D:\StudyProject\C#FDemo\StudentManager\Models\obj\Debug\Models.pdb
-D:\StudyProject\C#FDemo\StudentManager\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
-D:\StudyProject\C-Study\StudentManager\Models\bin\Debug\Models.dll
-D:\StudyProject\C-Study\StudentManager\Models\bin\Debug\Models.pdb
-D:\StudyProject\C-Study\StudentManager\Models\obj\Debug\Models.dll
-D:\StudyProject\C-Study\StudentManager\Models\obj\Debug\Models.pdb
