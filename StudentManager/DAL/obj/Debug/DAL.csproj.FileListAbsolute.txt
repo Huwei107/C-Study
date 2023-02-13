@@ -1,0 +1,7 @@
+D:\StudyProject\C-Study\StudentManager\DAL\bin\Debug\DAL.dll
+D:\StudyProject\C-Study\StudentManager\DAL\bin\Debug\DAL.pdb
+D:\StudyProject\C-Study\StudentManager\DAL\bin\Debug\Models.dll
+D:\StudyProject\C-Study\StudentManager\DAL\bin\Debug\Models.pdb
+D:\StudyProject\C-Study\StudentManager\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\StudyProject\C-Study\StudentManager\DAL\obj\Debug\DAL.dll
+D:\StudyProject\C-Study\StudentManager\DAL\obj\Debug\DAL.pdb
