@@ -138,7 +138,11 @@ namespace StudentManager
         }
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-        
+            DialogResult result = MessageBox.Show("确认退出吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK)
+            {
+                e.Cancel = true;//告诉窗体事件关闭这个任务取消
+            }
         }
 
         #endregion
@@ -158,7 +162,14 @@ namespace StudentManager
         //账号切换
         private void btnChangeAccount_Click(object sender, EventArgs e)
         {
-
+            //创建登录窗体
+            FrmUserLogin objFormLogin = new FrmUserLogin();
+            objFormLogin.Text = "[账号切换]";
+            DialogResult result = objFormLogin.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.lblCurrentUser.Text = Program.currentAdmin.AdminName + "]";
+            }
         }
         private void tsbAddStudent_Click(object sender, EventArgs e)
         {
