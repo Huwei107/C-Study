@@ -51,5 +51,24 @@ namespace DAL
             //返回结果
             return objAdmin;
         }
+
+        /// <summary>
+        /// 修改管理员密码
+        /// </summary>
+        /// <param name="objAdmin"></param>
+        /// <returns></returns>
+        public int ModfiyPwd(SysAdmin objAdmin)
+        {
+            string sql = string.Format(@"update Admins set LoginPwd='{0}' where LoginId={1}", objAdmin.LoginPwd, objAdmin.LoginId);
+            try
+            {
+                return SQLHelper.Update(sql);
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+        }
     }
 }

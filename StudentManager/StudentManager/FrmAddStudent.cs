@@ -5,19 +5,26 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using Models;
+using DAL;
 
 
 namespace StudentManager
 {
     public partial class FrmAddStudent : Form
     {
-
+        private StudentClassService objStudentClassSerivce = new StudentClassService();
+        private StudentService objStudentService = new StudentService();
 
         public FrmAddStudent()
         {
             InitializeComponent();
       
+            //初始化班级下拉框
+            this.cboClassName.DataSource = objStudentClassSerivce.GetAllClass();
+            this.cboClassName.DisplayMember = "ClassName";
+            this.cboClassName.ValueMember = "ClassId";
+            this.cboClassName.SelectedIndex = -1;
         }
         //添加新学员
         private void btnAdd_Click(object sender, EventArgs e)
