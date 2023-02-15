@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 using DAL;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
@@ -72,6 +74,35 @@ namespace DAL
                 
                 throw new Exception("发生数据访问异常："+ex.Message);
             }
+        }
+
+        /// <summary>
+        /// 根据班级查询学生信息
+        /// </summary>
+        /// <param name="className"></param>
+        /// <returns></returns>
+        public List<Student> GetStudentByClass(string className)
+        {
+            string sql = string.Format(@"select StudentId,StudentName,Gender,Birthday,StudentIdNo,CardNo,PhoneNumber,ClassName from Students
+                                         inner join StudentClass on Students.ClassId = StudentClass.ClassId
+                                         where ClassName='{0}'", className);
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<Student> stuList = new List<Student>();
+            while (objReader.Read())
+            {
+                stuList.Add(new Student()
+                {
+                    StudentId=Convert.ToInt32(objReader["StudentId"]),
+                    StudentName=objReader["StudentName"].ToString(),
+                    Gender=objReader["Gender"].ToString(),
+                    PhoneNumber=objReader["PhoneNumber"].ToString(),
+                    Birthday=Convert.ToDateTime(objReader["Birthday"].ToString()),
+                    StudentIdNo=objReader["StudentIdNo"].ToString(),
+                    ClassName=objReader["ClassName"].ToString()
+                });
+            }
+            objReader.Close();
+            return stuList;
         }
     }
 }
