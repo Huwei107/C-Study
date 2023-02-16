@@ -105,7 +105,11 @@ namespace StudentManager
             Student objStudent = objStudentService.GetStudentById(studentId);
             //显示修改信息窗口
             FrmEditStudent objFrm = new FrmEditStudent(objStudent);
-            objFrm.ShowDialog();
+            if (objFrm.ShowDialog() == DialogResult.OK)
+            {
+                //同步刷新
+                btnQuery_Click(null, null);
+            }
         }
         //删除学员对象
         private void btnDel_Click(object sender, EventArgs e)
