@@ -6,17 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using DAL;
+using Models;
 
 namespace StudentManager
 {
     public partial class FrmScoreQuery : Form
     {
-             private DataSet ds = null;//保存全部查询结果的数据集
+        private DataSet ds = null;//保存全部查询结果的数据集
+        private StudentClassService objClassService = new StudentClassService();
+        private ScoreListSerive objScoreService = new ScoreListSerive();
         public FrmScoreQuery()
         {
             InitializeComponent();
        
+            DataTable dt = objClassService.GetAllClasses().Tables[0];
+            this.cboClass.DataSource = dt;
+            this.cboClass.DisplayMember = "ClassName";
+            this.cboClass.ValueMember = "ClassId";
+            this.cboClass.SelectedIndex = -1;
         }     
 
         private void btnClose_Click(object sender, EventArgs e)

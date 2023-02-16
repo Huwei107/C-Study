@@ -107,14 +107,40 @@ namespace StudentManager
             FrmEditStudent objFrm = new FrmEditStudent(objStudent);
             if (objFrm.ShowDialog() == DialogResult.OK)
             {
-                //同步刷新
+                //同步刷新,适合小量数据
                 btnQuery_Click(null, null);
             }
         }
         //删除学员对象
         private void btnDel_Click(object sender, EventArgs e)
         {
-           
+            if (this.dgvStudentList.RowCount == 0)
+            {
+                MessageBox.Show("没有学员信息可以删除！", "提示");
+                return;
+            }
+            if (this.dgvStudentList.CurrentRow == null)
+            {
+                MessageBox.Show("请先选中需要删除的学员信息！", "提示");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("确认要删除吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+                return;
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+            try
+            {
+                if (objStudentService.DeleteStudent(studentId) == 1)
+                {
+                    btnQuery_Click(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "提示");
+            }
+
         }
         //姓名降序
         private void btnNameDESC_Click(object sender, EventArgs e)
