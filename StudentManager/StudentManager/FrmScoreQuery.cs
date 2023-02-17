@@ -15,7 +15,7 @@ namespace StudentManager
     {
         private DataSet ds = null;//保存全部查询结果的数据集
         private StudentClassService objClassService = new StudentClassService();
-        private ScoreListSerive objScoreService = new ScoreListSerive();
+        private ScoreListSerivce objScoreService = new ScoreListSerivce();
         public FrmScoreQuery()
         {
             InitializeComponent();

@@ -119,7 +119,7 @@
             this.cboClass.Name = "cboClass";
             this.cboClass.Size = new System.Drawing.Size(181, 20);
             this.cboClass.TabIndex = 0;
-            this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
+            //this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
             // 
             // label1
             // 
