@@ -24,7 +24,10 @@ namespace StudentManager
             this.cboClass.DataSource = dt;
             this.cboClass.DisplayMember = "ClassName";
             this.cboClass.ValueMember = "ClassId";
-            this.cboClass.SelectedIndex = -1;
+            
+
+            ds = objScoreService.GetAllScoreList();
+            this.dgvScoreList.DataSource = ds.Tables[0];
         }     
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -34,7 +37,16 @@ namespace StudentManager
         //根据班级名称动态筛选
         private void cboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-        
+            if (ds == null)
+                return;
+            if (this.cboClass.Text.Trim().Length == 0)
+            {
+                return;
+            }
+            else
+            {
+                this.ds.Tables[0].DefaultView.RowFilter = string.Format(@"ClassName ='{0}'", this.cboClass.Text.Trim());
+            }
         }
         //显示全部成绩
         private void btnShowAll_Click(object sender, EventArgs e)
@@ -44,18 +56,22 @@ namespace StudentManager
         //根据C#成绩动态筛选
         private void txtScore_TextChanged(object sender, EventArgs e)
         {
-           
+            if (this.txtScore.Text.Trim().Length == 0)
+                return;
+            if (!Common.DataValidate.IsInteger(this.txtScore.Text.Trim()))
+                return;
+            this.ds.Tables[0].DefaultView.RowFilter = "CSharp>" + this.txtScore.Text.Trim();
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-           // Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
+            Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
         }
 
         //打印当前的成绩信息
         private void btnPrint_Click(object sender, EventArgs e)
         {
-          
+
         }
     }
 }
