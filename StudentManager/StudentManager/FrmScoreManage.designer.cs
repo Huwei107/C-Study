@@ -108,6 +108,7 @@
             this.dgvScoreList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvScoreList.Size = new System.Drawing.Size(767, 533);
             this.dgvScoreList.TabIndex = 7;
+            this.dgvScoreList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvScoreList_CellFormatting);
             this.dgvScoreList.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvScoreList_CurrentCellDirtyStateChanged);
             this.dgvScoreList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScoreList_RowPostPaint);
             // 
@@ -119,7 +120,6 @@
             this.cboClass.Name = "cboClass";
             this.cboClass.Size = new System.Drawing.Size(181, 20);
             this.cboClass.TabIndex = 0;
-            //this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -282,7 +282,7 @@
             // 
             // StudentId
             // 
-            this.StudentId.DataPropertyName = "StudentId";
+            this.StudentId.DataPropertyName = "StudentObj";
             this.StudentId.HeaderText = "学号";
             this.StudentId.Name = "StudentId";
             this.StudentId.ReadOnly = true;
@@ -290,14 +290,14 @@
             // 
             // StudentName
             // 
-            this.StudentName.DataPropertyName = "StudentName";
+            this.StudentName.DataPropertyName = "StudentObj";
             this.StudentName.HeaderText = "姓名";
             this.StudentName.Name = "StudentName";
             this.StudentName.ReadOnly = true;
             // 
             // Gender
             // 
-            this.Gender.DataPropertyName = "Gender";
+            this.Gender.DataPropertyName = "StudentObj";
             this.Gender.HeaderText = "性别";
             this.Gender.Name = "Gender";
             this.Gender.ReadOnly = true;
@@ -305,21 +305,21 @@
             // ClassName
             // 
             this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ClassName.DataPropertyName = "ClassName";
+            this.ClassName.DataPropertyName = "ClassObj";
             this.ClassName.HeaderText = "班级";
             this.ClassName.Name = "ClassName";
             this.ClassName.ReadOnly = true;
             // 
             // CSharp
             // 
-            this.CSharp.DataPropertyName = "CSharp";
+            this.CSharp.DataPropertyName = "ScoreObj";
             this.CSharp.HeaderText = "C#成绩";
             this.CSharp.Name = "CSharp";
             this.CSharp.ReadOnly = true;
             // 
             // SQLServerDB
             // 
-            this.SQLServerDB.DataPropertyName = "SQLServerDB";
+            this.SQLServerDB.DataPropertyName = "ScoreObj";
             this.SQLServerDB.HeaderText = "DB成绩";
             this.SQLServerDB.Name = "SQLServerDB";
             this.SQLServerDB.ReadOnly = true;

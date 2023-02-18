@@ -86,6 +86,35 @@ namespace StudentManager
          
         }
 
+        //解析组合属性
+        private void dgvScoreList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.Value is Student)
+            {
+                e.Value = (e.Value as Student).StudentId;
+            }
+            if (e.ColumnIndex == 1 && e.Value is Student)
+            {
+                e.Value = (e.Value as Student).StudentName;
+            }
+            if (e.ColumnIndex == 2 && e.Value is Student)
+            {
+                e.Value = (e.Value as Student).Gender;
+            }
+            if (e.ColumnIndex == 3 && e.Value is StudentClass)
+            {
+                e.Value = (e.Value as StudentClass).ClassName;
+            }
+            if (e.ColumnIndex == 4 && e.Value is ScoreList)
+            {
+                e.Value = (e.Value as ScoreList).CSharp;
+            }
+            if (e.ColumnIndex == 5 && e.Value is ScoreList)
+            {
+                e.Value = (e.Value as ScoreList).SQLServerDB;
+            }
+        }
+
        
     }
 }
