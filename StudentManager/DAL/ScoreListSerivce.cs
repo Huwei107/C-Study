@@ -34,7 +34,7 @@ namespace DAL
         /// <returns></returns>
         public List<Student> QueryScoreList(string className)
         {
-            string sql = string.Format(@"select a.StudentId,a.StudentName,a.Gender,b.ClassName,c.CSharp,c.SQLServerDB
+            string sql = string.Format(@"select distinct(a.StudentId),a.StudentName,a.Gender,b.ClassName,c.CSharp,c.SQLServerDB
                                         from Students a
                                         inner join StudentClass b on b.ClassId=a.ClassId
                                         inner join ScoreList c on c.StudentId=a.StudentId");
@@ -55,6 +55,68 @@ namespace DAL
                     CSharp=Convert.ToInt32(objReader["CSharp"]),
                     SQLServerDB=Convert.ToInt32(objReader["SQLServerDB"])
                 });
+            }
+            objReader.Close();
+            return list;
+        }
+
+        /// <summary>
+        /// 查询考试总人数，缺考人数，平均成绩
+        /// </summary>
+        /// <param name="classId"></param>
+        /// <returns></returns>
+        public Dictionary<string, string> QueryScoreInfo(string classId)
+        {
+            string sql = string.Format(@"select count(*) AS stuCount, avg(CSharp) AS avgCSharp, avg(SQLServerDB) AS avgDB from ScoreList
+                                        inner join Students on Students.StudentId = ScoreList.StudentId");
+            if (classId != null && classId.Length != 0)
+            {
+                sql += string.Format(@" where ClassId={0}", classId);
+            }
+            sql += string.Format(@";select count(*) AS absentCount from Students where StudentId not in (
+                                  select StudentId from ScoreList)");
+            if (classId != null && classId.Length != 0)
+            {
+                sql += string.Format(@" and ClassId={0}", classId);
+            }
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            Dictionary<string, string> scoreInfo = null;
+            while (objReader.Read())//读取考试统计结果
+            {
+                scoreInfo = new Dictionary<string, string>();
+                scoreInfo.Add("stuCount", objReader["stuCount"].ToString());
+                scoreInfo.Add("avgCSharp", objReader["avgCSharp"].ToString());
+                scoreInfo.Add("avgDB", objReader["avgDB"].ToString());
+            }
+            //读取缺考人员
+            if (objReader.NextResult())
+            {
+                if (objReader.Read())
+                {
+                    scoreInfo.Add("absentCount", objReader["absentCount"].ToString());
+                }
+            }
+            objReader.Close();
+            return scoreInfo;
+        }
+
+        /// <summary>
+        /// (根据班级)查询全校缺考人员的姓名
+        /// </summary>
+        /// <param name="classId"></param>
+        /// <returns></returns>
+        public List<string> QueryAbsentList(string classId)
+        {
+            string sql = string.Format(@"select StudentName from Students where StudentId not in (select StudentId from ScoreList)");
+            if (classId != null && classId.Length != 0)
+            {
+                sql += string.Format(@" and ClassId={0}", classId);
+            }
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<string> list = new List<string>();
+            while (objReader.Read())
+            {
+                list.Add(objReader["StudentName"].ToString());
             }
             objReader.Close();
             return list;
