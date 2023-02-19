@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer_ShowTime = new System.Windows.Forms.Timer(this.components);
             this.pbStu = new System.Windows.Forms.PictureBox();
             this.txtStuCardNo = new System.Windows.Forms.TextBox();
             this.lblWeek = new System.Windows.Forms.Label();
@@ -63,7 +63,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dgvStudentList = new System.Windows.Forms.DataGridView();
-            this.DTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.SignTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,11 +75,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentList)).BeginInit();
             this.SuspendLayout();
             // 
-            // timer1
+            // timer_ShowTime
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer_ShowTime.Enabled = true;
+            this.timer_ShowTime.Interval = 1000;
+            this.timer_ShowTime.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pbStu
             // 
@@ -456,7 +457,7 @@
             this.dgvStudentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudentList.ColumnHeadersHeight = 30;
             this.dgvStudentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DTime,
+            this.SignTime,
             this.StudentId,
             this.CardNo,
             this.StudentName,
@@ -487,14 +488,15 @@
             this.dgvStudentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudentList.Size = new System.Drawing.Size(959, 316);
             this.dgvStudentList.TabIndex = 98;
+            this.dgvStudentList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvStudentList_RowPostPaint);
             // 
-            // DTime
+            // SignTime
             // 
-            this.DTime.DataPropertyName = "DTime";
-            this.DTime.HeaderText = "打卡时间";
-            this.DTime.Name = "DTime";
-            this.DTime.ReadOnly = true;
-            this.DTime.Width = 150;
+            this.SignTime.DataPropertyName = "SignTime";
+            this.SignTime.HeaderText = "打卡时间";
+            this.SignTime.Name = "SignTime";
+            this.SignTime.ReadOnly = true;
+            this.SignTime.Width = 150;
             // 
             // StudentId
             // 
@@ -559,7 +561,6 @@
             this.Name = "FrmAttendance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[考勤打卡进行中...]";
-
             ((System.ComponentModel.ISupportInitialize)(this.pbStu)).EndInit();
             this.gp01.ResumeLayout(false);
             this.gp01.PerformLayout();
@@ -571,7 +572,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer_ShowTime;
         private System.Windows.Forms.PictureBox pbStu;
         private System.Windows.Forms.TextBox txtStuCardNo;
         private System.Windows.Forms.Label lblWeek;
@@ -601,7 +602,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgvStudentList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DTime;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SignTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentId;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;

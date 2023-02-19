@@ -152,31 +152,7 @@ namespace DAL
         /// <returns></returns>
         public Student GetStudentById(string studentId)
         {
-            string sql = string.Format(@"select StudentId,StudentName,Gender,Birthday,StudentIdNo,CardNo,PhoneNumber,
-                                                StuImage,StudentAddress,ClassName
-                                         from Students
-                                         inner join StudentClass on Students.ClassId = StudentClass.ClassId
-                                         where StudentId='{0}'", studentId);
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
-            Student objStudent = null;
-            if (objReader.Read())
-            {
-                objStudent = new Student()
-                {
-                    StudentId = Convert.ToInt32(objReader["StudentId"]),
-                    StudentName = objReader["StudentName"].ToString(),
-                    Gender = objReader["Gender"].ToString(),
-                    PhoneNumber = objReader["PhoneNumber"].ToString(),
-                    Birthday = Convert.ToDateTime(objReader["Birthday"].ToString()),
-                    StudentIdNo = objReader["StudentIdNo"].ToString(),
-                    ClassName = objReader["ClassName"].ToString(),
-                    StudentAddress=objReader["StudentAddress"].ToString(),
-                    CardNo =objReader["CardNo"].ToString(),
-                    StuImage = objReader["StuImage"]==null?"":objReader["StuImage"].ToString()
-                };
-            }
-            objReader.Close();
-            return objStudent;
+            return GetStudentByWhereSql(string.Format(@" where StudentId = {0}", studentId));
         }
 
         /// <summary>
@@ -234,6 +210,47 @@ namespace DAL
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// 根据卡号查询学生信息
+        /// </summary>
+        /// <param name="cardNo"></param>
+        /// <returns></returns>
+        public Student GetStudentByCardNo(string cardNo)
+        {
+            string whereSql = string.Format(@" where CardNo = '{0}'", cardNo);
+            return GetStudentByWhereSql(whereSql);
+        }
+
+        private Student GetStudentByWhereSql(string whereSql)
+        {
+            string sql = string.Format(@"select StudentId,StudentName,Gender,Birthday,StudentIdNo,CardNo,PhoneNumber,
+                                                StuImage,StudentAddress,ClassName
+                                         from Students
+                                         inner join StudentClass on Students.ClassId = StudentClass.ClassId
+                                         ");
+            sql += whereSql;
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            Student objStudent = null;
+            if (objReader.Read())
+            {
+                objStudent = new Student()
+                {
+                    StudentId = Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    PhoneNumber = objReader["PhoneNumber"].ToString(),
+                    Birthday = Convert.ToDateTime(objReader["Birthday"].ToString()),
+                    StudentIdNo = objReader["StudentIdNo"].ToString(),
+                    ClassName = objReader["ClassName"].ToString(),
+                    StudentAddress = objReader["StudentAddress"].ToString(),
+                    CardNo = objReader["CardNo"].ToString(),
+                    StuImage = objReader["StuImage"] == null ? "" : objReader["StuImage"].ToString()
+                };
+            }
+            objReader.Close();
+            return objStudent;
         }
     }
 }
