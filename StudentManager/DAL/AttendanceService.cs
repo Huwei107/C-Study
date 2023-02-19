@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DAL
 {
@@ -52,6 +54,46 @@ namespace DAL
             return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
         }
 
-        
+        public int GetSignStudents(DateTime beginTime, DateTime endTime)
+        {
+            string sql = string.Format(@"select count(distinct(CardNo)) from Attendance where DTime between '{0}' and '{1}'", beginTime, endTime);
+            return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
+        }
+
+        /// <summary>
+        /// 根据日期和姓名查询考勤信息
+        /// </summary>
+        /// <param name="beginTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<Student> GetStudentBySignDate(DateTime beginTime, DateTime endTime, string name)
+        {
+            string sql = string.Format(@"select Distinct(StudentId),DTime,StudentName,Gender,ClassName,Attendance.CardNo from Students
+                                         inner join StudentClass on StudentClass.ClassId = Students.ClassId
+                                         inner join Attendance on Students.CardNo = Attendance.CardNo");
+            sql += string.Format(@" where DTime between '{0}' and '{1}'", beginTime, endTime);
+            if (name != null && name.Length != 0)
+            {
+                sql += string.Format(@" and StudentName like '%{0}%'", name);
+            }
+            sql += " Order by DTime ASC";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            List<Student> list = new List<Student>();
+            while (objReader.Read())
+            {
+                list.Add(new Student()
+                {
+                    StudentId = Convert.ToInt32(objReader["StudentId"]),
+                    StudentName = objReader["StudentName"].ToString(),
+                    ClassName = objReader["ClassName"].ToString(),
+                    Gender = objReader["Gender"].ToString(),
+                    SignTime = Convert.ToDateTime(objReader["DTime"]),
+                    CardNo = objReader["CardNo"].ToString()
+                });
+            }
+            objReader.Close();
+            return list;
+        }
     }
 }

@@ -47,7 +47,7 @@
             this.lblAbsenceCount = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.DTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SignTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,7 +101,7 @@
             this.dgvStudentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudentList.ColumnHeadersHeight = 30;
             this.dgvStudentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DTime,
+            this.SignTime,
             this.StudentId,
             this.CardNo,
             this.StudentName,
@@ -236,13 +236,13 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "考勤查询";
             // 
-            // DTime
+            // SignTime
             // 
-            this.DTime.DataPropertyName = "DTime";
-            this.DTime.HeaderText = "打卡时间";
-            this.DTime.Name = "DTime";
-            this.DTime.ReadOnly = true;
-            this.DTime.Width = 150;
+            this.SignTime.DataPropertyName = "SignTime";
+            this.SignTime.HeaderText = "打卡时间";
+            this.SignTime.Name = "SignTime";
+            this.SignTime.ReadOnly = true;
+            this.SignTime.Width = 150;
             // 
             // StudentId
             // 
@@ -329,7 +329,7 @@
         private System.Windows.Forms.Label lblAbsenceCount;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SignTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentId;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
