@@ -41,6 +41,9 @@ namespace StudentManager
         //保存到数据库
         private void btnSaveToDB_Click(object sender, EventArgs e)
         {
+            //验证数据
+
+            //遍历集合
 
         }
     }
