@@ -42,9 +42,30 @@ namespace StudentManager
         private void btnSaveToDB_Click(object sender, EventArgs e)
         {
             //验证数据
-
+            if (stuList == null || stuList.Count == 0)
+            {
+                MessageBox.Show("目前没有要导入的数据！", "提示");
+                return;
+            }
             //遍历集合
+            try
+            {
+                if (objImport.Import(stuList))
+                {
+                    MessageBox.Show("数据导入成功！", "提示");
+                    this.dgvStudentList.DataSource = null;
+                    this.stuList.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("数据导入失败！", "提示");
+                }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show("数据导入失败！原因：" + ex.Message);
+            }
         }
     }
 }

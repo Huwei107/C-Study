@@ -46,15 +46,15 @@ namespace DAL
         {
             StringBuilder sqlBuilder = new StringBuilder();
             List<string> sqlList = new List<string>();
-            sqlBuilder.Append(string.Format("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId,StuImage)"));
-            sqlBuilder.Append(string.Format(" values('{0}','{1}','{2}',{3},{4},'{5}','{6}','{7}',{8})"));
+            sqlBuilder.Append("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId)");
+            sqlBuilder.Append(" values('{0}','{1}','{2}',{3},{4},'{5}','{6}','{7}',{8})");
             foreach (Student objStudent in list)
             {
                 string sql =string.Format(sqlBuilder.ToString(), objStudent.StudentName, objStudent.Gender,
                                                 objStudent.Birthday.ToString("yyyy-MM-dd"), objStudent.Age, objStudent.StudentIdNo, objStudent.CardNo, objStudent.PhoneNumber,objStudent.StudentAddress, objStudent.ClassId);
                 sqlList.Add(sql);
             }
-
+            return SQLHelper.UpdateByTran(sqlList);
 
         } 
     }
