@@ -6,6 +6,7 @@ using Models;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
 using System.IO;
+using Models.ExtendModels;
 
 namespace StudentManager.ExcelPrint
 {

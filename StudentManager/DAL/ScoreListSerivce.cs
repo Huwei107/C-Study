@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using Models;
+using Models.ExtendModels;
 
 namespace DAL
 {

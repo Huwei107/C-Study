@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Models;
 using DAL;
+using Models.ExtendModels;
 
 namespace StudentManager
 {
@@ -170,7 +171,18 @@ namespace StudentManager
         //打印当前学员信息
         private void btnPrint_Click(object sender, EventArgs e)
         {
-          
+            if (this.dgvStudentList.RowCount == 0 || this.dgvStudentList.CurrentRow == null)
+            {
+                return;
+            }
+            //获取当前行的学号
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+            //根据学号获取学员对象
+            StudentExt student = new StudentExt();
+            student.StudentObj = objStudentService.GetStudentById(studentId);
+            //调用Excel模块实现打印预览
+            ExcelPrint.PrintStudent printStudent = new ExcelPrint.PrintStudent();
+            printStudent.ExcelPrint(student);
         }
 
         //关闭

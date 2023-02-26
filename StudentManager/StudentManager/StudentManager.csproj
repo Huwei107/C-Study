@@ -54,6 +54,7 @@
     <Compile Include="Common\DataValidate.cs" />
     <Compile Include="Common\SerializeObjectToString.cs" />
     <Compile Include="Common\StringSecurity.cs" />
+    <Compile Include="ExcelPrint\DataExport.cs" />
     <Compile Include="ExcelPrint\PrintStudent.cs" />
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
