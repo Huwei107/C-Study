@@ -71,7 +71,12 @@ namespace StudentManager
         //打印当前的成绩信息
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            if (this.dgvScoreList.DataSource == null || this.dgvScoreList.Rows.Count == 0)
+            {
+                MessageBox.Show("列表没有查询到数据，无法导出！", "提示");
+                return;
+            }
+            new ExcelPrint.DataExport().Export(this.dgvScoreList);
         }
     }
 }
