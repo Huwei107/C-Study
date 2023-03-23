@@ -53,7 +53,7 @@ namespace StudentManager
             //和后台交互
             try
             {
-                Program.currentAdmin = objSysAdminService.AdminLogin(objAdmin);
+                Program.currentAdmin = objSysAdminService.AdminLoginParam(objAdmin);
                 if (Program.currentAdmin != null)
                 {
                     this.DialogResult = DialogResult.OK;

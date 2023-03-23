@@ -168,5 +168,86 @@ namespace DAL
                 conn.Close();
             }
         }
+
+        #region 执行带参数的SQL语句的各种方法
+        /// <summary>
+        /// 执行增删改操作
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static int Update(string sql, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            try
+            {
+                conn.Open();
+                cmd.Parameters.AddRange(param);//写法比较好
+                //foreach (SqlParameter item in param)
+                //{
+                //    cmd.Parameters.Add(item);
+                //}
+                return cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// 返回单一结果
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static object GetSingleResult(string sql, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            try
+            {
+                conn.Open();
+                cmd.Parameters.AddRange(param);
+                return cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// 返回结果集
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns>返回SqlDataReader对象</returns>
+        public static SqlDataReader GetReader(string sql, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            try
+            {
+                conn.Open();
+                cmd.Parameters.AddRange(param);
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+                throw ex;
+            }
+        }
+        #endregion
     }
 }
