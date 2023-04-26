@@ -201,6 +201,36 @@ namespace DAL
         }
 
         /// <summary>
+        /// 执行带参数存储过程
+        /// </summary>
+        /// <param name="procedureName"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static int UpdateByProcedure(string procedureName, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;//设置当前的操作是执行存储过程
+                cmd.CommandText = procedureName;//设置存储过程参数
+                cmd.Parameters.AddRange(param);//添加参数数组
+                return cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
         /// 返回单一结果
         /// </summary>
         /// <param name="sql"></param>
@@ -249,5 +279,7 @@ namespace DAL
             }
         }
         #endregion
+
+
     }
 }

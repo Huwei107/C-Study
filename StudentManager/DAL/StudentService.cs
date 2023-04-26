@@ -101,18 +101,76 @@ namespace DAL
         public int AddStudent(Student objStudent)
         {
             StringBuilder sqlBuilder = new StringBuilder();
+            //sqlBuilder.Append(string.Format("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId,StuImage)"));
+            //sqlBuilder.Append(string.Format(" values('{0}','{1}','{2}',{3},{4},'{5}','{6}','{7}',{8},'{9}');select @@identity", objStudent.StudentName, objStudent.Gender,
+            //                                    objStudent.Birthday.ToString("yyyy-MM-dd"),objStudent.Age,objStudent.StudentIdNo,objStudent.CardNo,objStudent.PhoneNumber,
+            //                                    objStudent.StudentAddress,objStudent.ClassId,objStudent.StuImage));
+
+            //编写带参数的SQL语句
             sqlBuilder.Append(string.Format("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId,StuImage)"));
-            sqlBuilder.Append(string.Format(" values('{0}','{1}','{2}',{3},{4},'{5}','{6}','{7}',{8},'{9}');select @@identity", objStudent.StudentName, objStudent.Gender,
-                                                objStudent.Birthday.ToString("yyyy-MM-dd"),objStudent.Age,objStudent.StudentIdNo,objStudent.CardNo,objStudent.PhoneNumber,
-                                                objStudent.StudentAddress,objStudent.ClassId,objStudent.StuImage));
+            sqlBuilder.Append(string.Format(" values(@StudentName,@Gender,@Birthday,@Age,@StudentIdNo,@CardNo,@PhoneNumber,@StudentAddress,@ClassId,@StuImage);select @@identity", objStudent.StudentName, objStudent.Gender, objStudent.Birthday.ToString("yyyy-MM-dd"), objStudent.Age, objStudent.StudentIdNo, objStudent.CardNo, objStudent.PhoneNumber, objStudent.StudentAddress, objStudent.ClassId, objStudent.StuImage));
+            //定义参数数组
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@StudentName",objStudent.StudentName),
+                new SqlParameter("@Gender",objStudent.Gender),
+                new SqlParameter("@Birthday",objStudent.Birthday),
+                new SqlParameter("@Age",objStudent.Age),
+                new SqlParameter("@StudentIdNo",objStudent.StudentIdNo),
+                new SqlParameter("@CardNo",objStudent.CardNo),
+                new SqlParameter("@PhoneNumber",objStudent.PhoneNumber),
+                new SqlParameter("@StudentAddress",objStudent.StudentAddress),
+                new SqlParameter("@ClassId",objStudent.ClassId),
+                new SqlParameter("@StuImage",objStudent.StuImage)
+            };
+
             try
             {
-                return Convert.ToInt32(SQLHelper.GetSingleResult(sqlBuilder.ToString()));
+                //return Convert.ToInt32(SQLHelper.GetSingleResult(sqlBuilder.ToString()));
+                return Convert.ToInt32(SQLHelper.Update(sqlBuilder.ToString(), param));
             }
             catch (Exception ex)
             {
                 
                 throw new Exception("发生数据访问异常："+ex.Message);
+            }
+        }
+
+        public int AddStudentByProcedure(Student objStudent)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+            //sqlBuilder.Append(string.Format("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId,StuImage)"));
+            //sqlBuilder.Append(string.Format(" values('{0}','{1}','{2}',{3},{4},'{5}','{6}','{7}',{8},'{9}');select @@identity", objStudent.StudentName, objStudent.Gender,
+            //                                    objStudent.Birthday.ToString("yyyy-MM-dd"),objStudent.Age,objStudent.StudentIdNo,objStudent.CardNo,objStudent.PhoneNumber,
+            //                                    objStudent.StudentAddress,objStudent.ClassId,objStudent.StuImage));
+
+            //编写带参数的SQL语句
+            sqlBuilder.Append(string.Format("insert into Students (StudentName,Gender,Birthday,Age,StudentIdNo,CardNo,PhoneNumber,StudentAddress,ClassId,StuImage)"));
+            sqlBuilder.Append(string.Format(" values(@StudentName,@Gender,@Birthday,@Age,@StudentIdNo,@CardNo,@PhoneNumber,@StudentAddress,@ClassId,@StuImage);select @@identity", objStudent.StudentName, objStudent.Gender, objStudent.Birthday.ToString("yyyy-MM-dd"), objStudent.Age, objStudent.StudentIdNo, objStudent.CardNo, objStudent.PhoneNumber, objStudent.StudentAddress, objStudent.ClassId, objStudent.StuImage));
+            //定义参数数组
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@StudentName",objStudent.StudentName),
+                new SqlParameter("@Gender",objStudent.Gender),
+                new SqlParameter("@Birthday",objStudent.Birthday),
+                new SqlParameter("@Age",objStudent.Age),
+                new SqlParameter("@StudentIdNo",objStudent.StudentIdNo),
+                new SqlParameter("@CardNo",objStudent.CardNo),
+                new SqlParameter("@PhoneNumber",objStudent.PhoneNumber),
+                new SqlParameter("@StudentAddress",objStudent.StudentAddress),
+                new SqlParameter("@ClassId",objStudent.ClassId),
+                new SqlParameter("@StuImage",objStudent.StuImage)
+            };
+
+            try
+            {
+                //return Convert.ToInt32(SQLHelper.GetSingleResult(sqlBuilder.ToString()));
+                return Convert.ToInt32(SQLHelper.Update("usp_AddStudent", param));
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("发生数据访问异常：" + ex.Message);
             }
         }
 

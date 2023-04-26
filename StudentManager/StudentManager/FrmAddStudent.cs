@@ -125,8 +125,9 @@ namespace StudentManager
             //调用后台数据访问方法
             try
             {
+                //int studentId = objStudentService.AddStudent(objStudent);
                 int studentId = objStudentService.AddStudent(objStudent);
-                if (studentId > 1)
+                if (studentId > 0)
                 {
                     //同步显示添加的学员
                     objStudent.StudentId = studentId;
