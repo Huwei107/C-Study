@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DAL;
 using Models;
+using Models.ExtendModels;
 
 namespace StudentManager
 {
@@ -36,8 +37,8 @@ namespace StudentManager
             }
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreList(this.cboClass.Text.Trim());
             new Common.DataGridViewStyle().DgvStyle1(this.dgvScoreList);
-            QueryScore(this.cboClass.SelectedValue.ToString());
-            
+            //QueryScore(this.cboClass.SelectedValue.ToString());
+            Query(this.cboClass.SelectedValue.ToString());
         }
         //关闭
         private void btnClose_Click(object sender, EventArgs e)
@@ -65,11 +66,39 @@ namespace StudentManager
             }
         }
 
+        private void Query(string className)
+        {
+            //1.定义方法的输出参数（相对于后台调用）
+            Dictionary<string, string> dicParam = null;
+            List<string> absentList = null;
+            //2.执行查询并接收返回的集合与参数
+            List<StudentExt> scoreList = objScoreListService.GetScoreInfo(className, out dicParam, out absentList);
+            //3.显示查询结果列表
+            this.dgvScoreList.AutoGenerateColumns = false;
+            this.dgvScoreList.DataSource = scoreList;
+            //4.显示统计信息（方法输出参数）
+            this.lblAttendCount.Text = dicParam["stuCount"];
+            this.lblCount.Text = dicParam["absentCount"];
+            this.lblCSharpAvg.Text = dicParam["avgCSharp"];
+            this.lblDBAvg.Text = dicParam["avgDB"];
+            //5.显示缺考人员列表
+            this.lblList.Items.Clear();
+            if (absentList.Count == 0)
+            {
+                this.lblList.Items.Add("沒有缺考");
+            }
+            else
+            {
+                this.lblList.Items.AddRange(absentList.ToArray());
+            }
+        }
+
         //统计全校考试成绩
         private void btnStat_Click(object sender, EventArgs e)
         {
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreList("");
-            QueryScore("");
+            //QueryScore("");
+            Query("");
             new Common.DataGridViewStyle().DgvStyle1(this.dgvScoreList);
         }
 
@@ -78,8 +107,6 @@ namespace StudentManager
             Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
         }
 
-    
-     
         //选择框选择改变处理
         private void dgvScoreList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -115,6 +142,7 @@ namespace StudentManager
             }
         }
 
+        
        
     }
 }

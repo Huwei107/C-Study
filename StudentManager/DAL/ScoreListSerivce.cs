@@ -158,5 +158,67 @@ namespace DAL
             objReader.Close();
             return list;
         }
+
+        #region 调用存储过程统计考试信息
+        public List<StudentExt> GetScoreInfo(string className, out Dictionary<string, string> dicParam, out List<string> absentList)
+        {
+            //定义参数
+            SqlParameter inputClassName = new SqlParameter("@className", className);
+            inputClassName.Direction = ParameterDirection.Input;//设置参数为输入类型
+
+            SqlParameter outStuCount = new SqlParameter("@stuCount", SqlDbType.Int);
+            outStuCount.Direction = ParameterDirection.Output;
+
+            SqlParameter outAbsentCount = new SqlParameter("@absentCount", SqlDbType.Int);
+            outAbsentCount.Direction = ParameterDirection.Output;
+
+            SqlParameter outAvgDB = new SqlParameter("@avgDB", SqlDbType.Int);
+            outAvgDB.Direction = ParameterDirection.Output;
+
+            SqlParameter outAvgCSharp = new SqlParameter("@avgCSharp", SqlDbType.Int);
+            outAvgCSharp.Direction = ParameterDirection.Output;
+
+            //执行查询
+            SqlParameter[] param = new SqlParameter[] { inputClassName, outStuCount, outAbsentCount, outAvgDB, outAvgCSharp };
+            SqlDataReader objReader = SQLHelper.GetReaderProce("usp_ScoreQuery", param);
+            //读取考试成绩列表
+            List<StudentExt> scoreList = new List<StudentExt>();
+            while (objReader.Read())
+            {
+                scoreList.Add(new StudentExt()
+                {
+                    StudentObj = new Student()
+                    {
+                        StudentId = Convert.ToInt32(objReader["StudentId"]),
+                        StudentName = Convert.ToString(objReader["StudentName"]),
+                        ClassName = Convert.ToString(objReader["ClassName"]),
+                        CSharp = Convert.ToInt32(objReader["CSharp"]),
+                        SQLServerDB = Convert.ToInt32(objReader["SQLServerDB"])
+                    }
+                });
+            }
+            //读取缺考人员列表
+            List<string> absentName = new List<string>();
+            if (objReader.NextResult())
+            {
+                while (objReader.Read())
+                {
+                    absentName.Add(objReader["StudentName"].ToString());
+                }
+            }
+            //关闭读取器
+            objReader.Close();
+            //获取输出参数
+            Dictionary<string, string> outDicParam = new Dictionary<string, string>();
+            outDicParam["stuCount"] = outStuCount.Value.ToString();
+            outDicParam["absentCount"] = outAbsentCount.Value.ToString();
+            outDicParam["avgDB"] = outAvgDB.Value.ToString();
+            outDicParam["avgCSharp"] = outAvgCSharp.Value.ToString();
+            //返回输出参数和结果
+            dicParam = outDicParam;
+            absentList = absentName;
+            return scoreList;
+        }
+        #endregion 
     }
 }

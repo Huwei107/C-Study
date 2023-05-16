@@ -280,6 +280,28 @@ namespace DAL
         }
         #endregion
 
+        #region 调用存储过程执行多结果查询
+        public static SqlDataReader GetReaderProce(string procedureName, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.StoredProcedure;//设置当前操作是执行存储过程
+                cmd.CommandText = procedureName;//设置存储过程名称
+                cmd.Parameters.AddRange(param);//添加参数数组
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                throw ex;
+            }
+        }
+        #endregion
+
 
     }
 }

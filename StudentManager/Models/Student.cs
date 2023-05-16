@@ -9,6 +9,7 @@ namespace Models
     /// <summary>
     /// 学员实体类
     /// </summary>
+    [Serializable]
     public class Student
     {
         public int StudentId { get; set; }
