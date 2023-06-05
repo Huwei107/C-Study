@@ -277,12 +277,12 @@ namespace LinqDemo
             #endregion
 
             #region 实例14：集合类查询Distinct
-            int[] nums = { 1, 2, 2, 6, 5, 6, 7, 8, 9 };
-            var list = nums.Distinct();
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
+            //int[] nums = { 1, 2, 2, 6, 5, 6, 7, 8, 9 };
+            //var list = nums.Distinct();
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine(item);
+            //}
             #endregion
 
             #endregion

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/Default.aspx" title="学员管理系统"  description="">
+      <siteMapNode url="~/Student/StudentManage.aspx" title="学员信息管理"  description="">
+        <siteMapNode url="~/Student/AddStudent.aspx" title="添加学员信息" description=""/>
+        <siteMapNode url="~/Student/EditStudent.aspx" title="修改学员信息" description=""/>
+        <siteMapNode url="~/Student/UploadImage.aspx" title="上传学员图片" description=""/>
+      </siteMapNode>
+        <siteMapNode url="~/Score/ScoreManage.aspx" title="成绩管理"  description="" />
+    </siteMapNode>
+</siteMap>
