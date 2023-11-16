@@ -1,5 +1,29 @@
-1.
+1、CheckListBox（Dev）
+  属性：
+    1. CheckedIndices：选中索引的集合，int集合
+    2. CheckedItems：选中项的集合，string集合
 **********************************************************************************************************************************************************
+2、TreeView
+
+//遍历TreeView
+private void GetTreeViewChecked(TreeNode parent, List<int> departments)
+    {
+        TreeNode node = parent;
+        if (node != null)
+        {
+            if (node.Checked == true && node.FirstNode == null)
+                departments.Add(Convert.ToInt32(node.Name));
+
+            if (node.FirstNode != null)////如果node节点还有子节点则进入遍历
+            {
+                GetTreeViewChecked(node.FirstNode, departments);
+            }
+            if (node.NextNode != null)////如果node节点后面有同级节点则进入遍历
+            {
+                GetTreeViewChecked(node.NextNode, departments);
+            }
+        }
+    }
 **********************************************************************************************************************************************************
 **********************************************************************************************************************************************************
 **********************************************************************************************************************************************************

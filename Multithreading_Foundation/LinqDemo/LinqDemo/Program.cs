@@ -35,15 +35,15 @@ namespace LinqDemo
             #endregion
 
             #region 简单扩展方法的应用(克服继承的局限性)
-            //var objStudent = new Student() { Age = 20, StudentName = "小张" };
-            //Console.WriteLine(objStudent.ShowStuInfo());
+            var objStudent = new Student() { Age = 20, StudentName = "小张" };
+            Console.WriteLine(objStudent.ShowStuInfo());
             #endregion
 
             #region 简单扩展方法的应用(克服继承的局限性)
             //var objStudent = new Student() { Age = 20, StudentName = "小张" };
             //Console.WriteLine(objStudent.ShowStuInfo(70,80));
             #endregion
-            
+
             #region 委托
             //【3】创建委托对象，关联具体方法
             //CalculatorDelegate objCal = new CalculatorDelegate(Add);
@@ -118,7 +118,7 @@ namespace LinqDemo
             //    Console.WriteLine(item);
             //}
             #endregion
-            
+
             #region 实例5：扩展方法OrderBy()应用
             //int[] nums = { 1, 7, 2, 6, 5, 4, 9, 27, 20, 13 };
             //var list = nums.Where(i => i % 2 == 0).Select(i => i * i).OrderBy(i => i);
