@@ -33,6 +33,11 @@
   2. 服务器时间和客户端时间不一定
   3. Math.Round(), 要加上 MidpointRounding.AwayFromZero
   4. 部署时，端口要注意配置入站规则，然后允许万维网
+  5. 注册WindowsService服务：管理员打开Windows PollerShell，输入指令
+     New-Service -Name "FX.SmartCabinet.ReWriteService" -BinaryPathName D:\1FX.SmartCabinet.DockingService\FX.SmartCabinet.DockingService.exe
+  6. 注销WindowsService服务：找到服务文件目录，输入cmd，输入指令
+     sc delete FX.SmartCabinet.ReWriteService
+  7.
 **********************************************************************************************************************************************************
 10、大数据量插入，首选SqlBulkCopy，插入临时表进行交互
 **********************************************************************************************************************************************************
