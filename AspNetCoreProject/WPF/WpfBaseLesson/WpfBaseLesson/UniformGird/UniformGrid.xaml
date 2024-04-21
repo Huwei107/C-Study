@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfBaseLesson.UniformGird.UniformGrid"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBaseLesson.UniformGird"
+        mc:Ignorable="d"
+        Title="UniformGrid" Height="450" Width="800">
+    <Grid>
+        <!--UniformGrid：一般用于动态绑定数据-->
+        <UniformGrid Columns="3" Rows="3" Width="200" Height="150">
+            <Button Content="注册" Height="40" Width="50"></Button>
+            <Button Content="注册" Height="40" Width="50" Click="Button_Click"></Button>
+            <Button Content="注册" Height="40" Width="50"></Button>
+            <Button Content="注册" Height="40" Width="50"></Button>
+            <Button Content="注册" Height="40" Width="50"></Button>
+            <Button Content="注册" Height="40" Width="50"></Button>
+        </UniformGrid>
+    </Grid>
+</Window>
