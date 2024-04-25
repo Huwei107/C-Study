@@ -20,9 +20,16 @@ namespace 委托事件
     public partial class SonWin : Window
     {
         //先定义委托
-        public delegate void del();
+        public delegate void del();     //public delegate 返回值类型 del(参数)
 
-        public del Dele;//委托类型属性    接收主窗口传过来的方法
+        public delegate int del1(int i, string str);
+
+        //public del Dele;//委托类型属性    接收主窗口传过来的方法
+
+        //系统委托/预置委托     Action、Func
+        public Action Dele;
+
+
 
         public SonWin()
         {
