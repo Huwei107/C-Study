@@ -1,14 +1,25 @@
-﻿using System;
+﻿using OAManage.Command;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace OAManage.Model
 {
+    /// <summary>
+    /// 绑定登录模型
+    /// </summary>
     public class AccountModel : INotifyPropertyChanged //属性改变的通知接口
     {
+        /// <summary>
+        /// 属性改变事件
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         /// <summary>
         /// 账号
         /// </summary>
@@ -55,10 +66,31 @@ namespace OAManage.Model
 
 
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        private void Login()
+        {
+            if (this.Account == "admin" && this.Pwd == "123")
+            {
+                MessageBox.Show("登录成功！");
+            }
+            else
+            {
+                MessageBox.Show("登录失败！");
+                //清空账号密码
+                this.Pwd = string.Empty;//后台清空
+            }
+        }
 
         /// <summary>
-        /// 属性改变事件
+        /// 命令属性
+        /// 实体把登录这个方法委托给命令，前端只能绑定命令
+        /// 委托把方法作为参数
         /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public ICommand LoginCommand
+        {
+            get { return new DoCommand(Login); }
+        }
     }
 }
