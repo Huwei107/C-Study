@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OAManage.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,17 +26,19 @@ namespace OAManage
             InitializeComponent();
 
             //设置数据上下文
-            this.DataContext = this;
+            accountModel = new AccountModel();
+            this.DataContext = accountModel;
         }
         /// <summary>
         /// 账号
-        /// </summary>
+        /// </summary> 
         public string Account { get; set; }
         /// <summary>
         /// 密码
         /// </summary>
-        public string Password { get; set; }
+        public string Pwd { get; set; }
         //问题：界面上修改了，后台能接收，后台改了，界面不知道（界面没有收到通知）
+        private AccountModel accountModel;
 
         /// <summary>
         /// 登录，单击执行
@@ -47,7 +50,7 @@ namespace OAManage
             //前后耦合大
             //string account = txtAccount.Text;
             //string password = txtPassword.Password;
-            if(Account == "admin" && Password == "123")
+            if(accountModel.Account == "admin" && accountModel.Pwd == "123")
             {
                 MessageBox.Show("登录成功！");
             }
@@ -55,7 +58,7 @@ namespace OAManage
             {
                 MessageBox.Show("登录失败！");
                 //清空账号密码
-                Password = string.Empty;//后台清空
+                accountModel.Pwd = string.Empty;//后台清空
             }
         }
     }

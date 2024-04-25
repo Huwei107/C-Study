@@ -12,11 +12,11 @@ namespace OAManage.Model
         /// <summary>
         /// 账号
         /// </summary>
-        public string _Account { get; set; }
+        private string _Account { get; set; }
         /// <summary>
         /// 账号
         /// </summary>
-        private string Account
+        public string Account
         {
             get { return _Account; }
             set
@@ -34,7 +34,25 @@ namespace OAManage.Model
         /// <summary>
         /// 密码
         /// </summary>
-        public string _Pwd { get; set; }
+        private string _Pwd;
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Pwd
+        {
+            get { return _Pwd; }
+            set
+            {
+                _Pwd = value;
+                //通知
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pwd"));
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Pwd"));
+                }
+            }
+        }
+
 
 
 
