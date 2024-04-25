@@ -1,4 +1,5 @@
 ﻿using OAManage.Command;
+using OAManage.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,33 +9,26 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace OAManage.Model
+namespace OAManage.ViewModels
 {
-    /// <summary>
-    /// 绑定登录模型
-    /// </summary>
-    public class AccountModel : INotifyPropertyChanged //属性改变的通知接口
+    public class AccountViewModel : INotifyPropertyChanged  //属性改变的通知接口
     {
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        /// <summary>
-        /// 账号
-        /// </summary>
-        private string _Account { get; set; }
+        private AccountModel _accountModel = new AccountModel();
+
         /// <summary>
         /// 账号
         /// </summary>
         public string Account
         {
-            get { return _Account; }
+            get
+            {
+                return _accountModel.Account;
+            }
             set
             {
-                _Account = value;
-                //通知
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Account"));
+                _accountModel.Account = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("Account"));
@@ -45,18 +39,15 @@ namespace OAManage.Model
         /// <summary>
         /// 密码
         /// </summary>
-        private string _Pwd;
-        /// <summary>
-        /// 密码
-        /// </summary>
         public string Pwd
         {
-            get { return _Pwd; }
+            get
+            {
+                return _accountModel.Pwd;
+            }
             set
             {
-                _Pwd = value;
-                //通知
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pwd"));
+                _accountModel.Pwd = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("Pwd"));
@@ -64,14 +55,31 @@ namespace OAManage.Model
             }
         }
 
-
+        /// <summary>
+        /// 用户属性，开放给视图V绑定
+        /// </summary>
+        //public AccountModel AccountModel
+        //{
+        //    get
+        //    {
+        //        return _accountModel;
+        //    }
+        //    set
+        //    {
+        //        _accountModel = value;
+        //        if (PropertyChanged != null)
+        //        {
+        //            PropertyChanged(this, new PropertyChangedEventArgs("AccountModel"));
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 登录
         /// </summary>
         private void Login()
         {
-            if (this.Account == "admin" && this.Pwd == "123")
+            if (Account == "admin" && Pwd == "123")
             {
                 MessageBox.Show("登录成功！");
             }
@@ -79,7 +87,8 @@ namespace OAManage.Model
             {
                 MessageBox.Show("登录失败！");
                 //清空账号密码
-                this.Pwd = string.Empty;//后台清空
+                Account = string.Empty;
+                Pwd = string.Empty;
             }
         }
 

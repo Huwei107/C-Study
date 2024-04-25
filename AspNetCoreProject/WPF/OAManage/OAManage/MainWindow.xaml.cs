@@ -1,4 +1,5 @@
 ﻿using OAManage.Model;
+using OAManage.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,12 @@ namespace OAManage
         {
             InitializeComponent();
 
-            //设置数据上下文
-            accountModel = new AccountModel();
-            this.DataContext = accountModel;
+            //设置数据上下文（视图模型）
+            accountViewModel = new AccountViewModel();
+            this.DataContext = accountViewModel;
         }
 
         //问题：界面上修改了，后台能接收，后台改了，界面不知道（界面没有收到通知）
-        private AccountModel accountModel;
+        private AccountViewModel accountViewModel;
     }
 }
