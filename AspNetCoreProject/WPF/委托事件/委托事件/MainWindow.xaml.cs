@@ -33,10 +33,16 @@ namespace 委托事件
             this.txtTest.Text = "成功了！";
         }
 
+        public void F2()
+        {
+            this.txtTest.Text = "成功了！";
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SonWin sonWin = new SonWin();
-            sonWin.Dele = F1;//将方法传给子窗口
+            SonWin sonWin = new SonWin(F1);
+            //sonWin.Dele += F1;//将方法传给子窗口
+            //sonWin.Dele += F2;//将方法传给子窗口
             sonWin.Show();//打开窗口
         }
     }
