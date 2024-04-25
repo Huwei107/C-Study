@@ -32,6 +32,7 @@ namespace 单例模式test
             if (instance == null)
             {
                 instance = new Singleton1();
+                Console.WriteLine($"{instance}初始化了！");
             }
             return instance;
         }

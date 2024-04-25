@@ -35,6 +35,7 @@ namespace OAManage
         /// 密码
         /// </summary>
         public string Password { get; set; }
+        //问题：界面上修改了，后台能接收，后台改了，界面不知道（界面没有收到通知）
 
         /// <summary>
         /// 登录，单击执行
