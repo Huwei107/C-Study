@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "weituo", "委托事件\weituo.csproj", "{6DAFD365-64A6-4E56-9DAB-A66328DB0BA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weituo", "委托事件\weituo.csproj", "{6DAFD365-64A6-4E56-9DAB-A66328DB0BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo2", "Demo2\Demo2.csproj", "{A11BEF7B-2383-4779-8070-7E2EF0CCA5E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6DAFD365-64A6-4E56-9DAB-A66328DB0BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DAFD365-64A6-4E56-9DAB-A66328DB0BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DAFD365-64A6-4E56-9DAB-A66328DB0BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A11BEF7B-2383-4779-8070-7E2EF0CCA5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11BEF7B-2383-4779-8070-7E2EF0CCA5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11BEF7B-2383-4779-8070-7E2EF0CCA5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11BEF7B-2383-4779-8070-7E2EF0CCA5E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
