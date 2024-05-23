@@ -190,4 +190,6 @@ ModelManifest.xml
 /AspNetCoreProject/WPF/WpfBaseLesson/.vs
 /AspNetCoreProject/WPF/OAManage/.vs
 /TestDemo/单例模式test/.vs
+/AspNetCoreProject/WPF/MultThreadDemo/.vs
+/AspNetCoreProject/.NETCORE/异步编程/.vs
 /AspNetCoreProject/WPF/委托事件/.vs
