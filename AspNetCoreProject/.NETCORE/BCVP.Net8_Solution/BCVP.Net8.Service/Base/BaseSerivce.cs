@@ -16,11 +16,12 @@ namespace BCVP.Net8.Service
         }
 
 
-        public async Task<List<TEntity>> Query()
+        public async Task<List<TVo>> Query()
         {
             var baseRepo = new BaseRepository<TEntity>();
             var data = await baseRepo.Query();
-            return data;
+            var bo = _mapper.Map<List<TVo>>(data);
+            return bo;
         }
     }
 }

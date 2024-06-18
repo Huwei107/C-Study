@@ -14,6 +14,10 @@ namespace BCVP.Net8
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //Ìí¼Ó
+            builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+            AutoMapperConfig.RegisterMappings();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
