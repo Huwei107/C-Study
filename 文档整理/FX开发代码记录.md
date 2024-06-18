@@ -115,6 +115,32 @@ IF OBJECT_ID('tempdb..#temp') IS NOT NULL
   2. Math.Ceiling：向上取整，只要有小数都加1
   3. Math.Floor：向下取整，总是舍去小数
 **********************************************************************************************************************************************************
+/// <summary>
+/// 获取属性的值
+/// </summary>
+/// <typeparam name="T">实体类</typeparam>
+/// <param name="t">实体</param>
+/// <param name="property">属性名称</param>
+/// <returns></returns>
+ public static Dictionary<object, object> GetPropertieValue<T>(T t,string property)
+ {
+     var ret = new Dictionary<object, object>();
+     if (t == null) { return null; }
+     PropertyInfo[] properties = t.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+     if (properties.Length <= 0) { return null; }
+
+     foreach (PropertyInfo item in properties)
+     {
+         string name = item.Name;
+         object value = item.GetValue(t, null);
+         if (item.Name == property)
+         {
+             ret.Add(name, value);
+         }
+     }
+     return ret;
+ }
+
 **********************************************************************************************************************************************************
 **********************************************************************************************************************************************************
 **********************************************************************************************************************************************************
