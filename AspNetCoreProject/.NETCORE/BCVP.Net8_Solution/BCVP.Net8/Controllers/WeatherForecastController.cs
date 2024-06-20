@@ -25,6 +25,7 @@ namespace BCVP.Net8.Controllers
         {
             _logger = logger;
             _mapper = mapper;
+            _roleService = roleService;
         }
 
         [HttpGet(Name = "GetUserList")]
