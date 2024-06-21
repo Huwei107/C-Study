@@ -10,21 +10,13 @@ namespace BCVP.Net8.Controllers
     [Route("v1/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IMapper _mapper;
         private readonly IBaseService<Role, RoleVo> _roleService;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, 
-            IMapper mapper,
             IBaseService<Role,RoleVo> roleService)
         {
             _logger = logger;
-            _mapper = mapper;
             _roleService = roleService;
         }
 

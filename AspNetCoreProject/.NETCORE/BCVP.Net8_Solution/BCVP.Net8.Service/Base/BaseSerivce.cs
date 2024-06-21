@@ -10,16 +10,21 @@ namespace BCVP.Net8.Service
     {
 
         private readonly IMapper _mapper;
-        public BaseSerivce(IMapper mapper)
+        private readonly IBaseRepository<TEntity> _baseRepository;
+
+        public BaseSerivce(IMapper mapper, IBaseRepository<TEntity> baseRepository)
         {
             _mapper = mapper;
+            _baseRepository = baseRepository;
         }
 
 
         public async Task<List<TVo>> Query()
         {
-            var baseRepo = new BaseRepository<TEntity>();
-            var data = await baseRepo.Query();
+            //var baseRepo = new BaseRepository<TEntity>();
+            //var data = await baseRepo.Query();
+
+            var data = await _baseRepository.Query();
             var bo = _mapper.Map<List<TVo>>(data);
             return bo;
         }

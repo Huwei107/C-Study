@@ -1,4 +1,8 @@
 
+using BCVP.Net8.IService;
+using BCVP.Net8.Repository;
+using BCVP.Net8.Service;
+
 namespace BCVP.Net8
 {
     public class Program
@@ -17,6 +21,10 @@ namespace BCVP.Net8
             //添加
             builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
             AutoMapperConfig.RegisterMappings();
+
+            //Scoped 从请求开始到结束
+            builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseSerivce<,>));
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             var app = builder.Build();
 
