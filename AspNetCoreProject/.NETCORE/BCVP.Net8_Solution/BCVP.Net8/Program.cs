@@ -1,7 +1,13 @@
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using BCVP.Net8.Extension;
+using BCVP.Net8.Extensions;
 using BCVP.Net8.IService;
 using BCVP.Net8.Repository;
 using BCVP.Net8.Service;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace BCVP.Net8
 {
@@ -10,6 +16,17 @@ namespace BCVP.Net8
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Autofac依赖注入
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureContainer<ContainerBuilder>(builder =>
+                {
+                    builder.RegisterModule<AutofacModuleRegister>();
+                    //属性注入可能会用到api层的类
+                    builder.RegisterModule<AutofacPropertityModuleRegister>();
+                });
+            //开启控制器
+            builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 
             // Add services to the container.
 
@@ -22,9 +39,14 @@ namespace BCVP.Net8
             builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
             AutoMapperConfig.RegisterMappings();
 
-            //Scoped 从请求开始到结束
-            builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseSerivce<,>));
-            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            #region 原生依赖注入
+            //Scoped 从请求开始到结束 
+            //builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseSerivce<,>));
+            //builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            #endregion
+
+            //Autofac依赖注入
+
 
             var app = builder.Build();
 

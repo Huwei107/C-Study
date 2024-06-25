@@ -13,6 +13,8 @@ namespace BCVP.Net8.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IBaseService<Role, RoleVo> _roleService;
 
+        public IBaseService<Role, RoleVo> _roleServiceObj {  get; set; }
+
         public WeatherForecastController(ILogger<WeatherForecastController> logger, 
             IBaseService<Role,RoleVo> roleService)
         {
@@ -30,7 +32,10 @@ namespace BCVP.Net8.Controllers
             //var roleService = new BaseSerivce<Role, RoleVo>(_mapper);
             //var roleList = await roleService.Query();
 
-            var roleList = await _roleService.Query();
+            //var roleList = await _roleService.Query();
+
+            var roleList = await _roleServiceObj.Query();
+
             return roleList;
         }
     }

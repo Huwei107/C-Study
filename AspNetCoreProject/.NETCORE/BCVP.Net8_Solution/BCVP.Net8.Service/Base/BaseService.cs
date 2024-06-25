@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 
 namespace BCVP.Net8.Service
 {
-    public class BaseSerivce<TEntity, TVo> : IBaseService<TEntity, TVo> where TEntity : class, new()
+    public class BaseService<TEntity, TVo> : IBaseService<TEntity, TVo> where TEntity : class, new()
     {
 
         private readonly IMapper _mapper;
         private readonly IBaseRepository<TEntity> _baseRepository;
 
-        public BaseSerivce(IMapper mapper, IBaseRepository<TEntity> baseRepository)
+        public BaseService(IMapper mapper, IBaseRepository<TEntity> baseRepository)
         {
             _mapper = mapper;
             _baseRepository = baseRepository;

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCVP.Net8.IService", "BCVP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCVP.Net8.Service", "BCVP.Net8.Service\BCVP.Net8.Service.csproj", "{1258468A-7D52-4002-8143-660F73727A39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCVP.Net8.Extension", "BCVP.Net8.Extension\BCVP.Net8.Extension.csproj", "{F92C398B-15D1-41A5-9E7B-E86044CE2CF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1258468A-7D52-4002-8143-660F73727A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1258468A-7D52-4002-8143-660F73727A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1258468A-7D52-4002-8143-660F73727A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F92C398B-15D1-41A5-9E7B-E86044CE2CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F92C398B-15D1-41A5-9E7B-E86044CE2CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F92C398B-15D1-41A5-9E7B-E86044CE2CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F92C398B-15D1-41A5-9E7B-E86044CE2CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
