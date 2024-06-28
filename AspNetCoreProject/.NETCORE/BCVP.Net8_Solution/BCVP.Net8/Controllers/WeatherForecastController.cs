@@ -22,7 +22,7 @@ namespace BCVP.Net8.Controllers
             _roleService = roleService;
         }
 
-        [HttpGet(Name = "GetUserList")]
+        [HttpGet(Name = "UserList")]
         public async Task<object> GetUserList()
         {
             //var userSerivce = new UserService();
