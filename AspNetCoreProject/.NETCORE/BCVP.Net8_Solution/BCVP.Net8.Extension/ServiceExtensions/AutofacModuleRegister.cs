@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
 using BCVP.Net8.IService;
 using BCVP.Net8.Repository;
 using BCVP.Net8.Service;
@@ -16,15 +17,23 @@ namespace BCVP.Net8.Extension
             var serviceDllFile = Path.Combine(basePath, "BCVP.Net8.Service.dll");
             var repositoryDllFile = Path.Combine(basePath, "BCVP.Net8.Repository.dll");
 
+            var aopTypes = new List<Type>() { typeof(ServiceAOP)};
+            builder.RegisterType<ServiceAOP>();
+
             builder.RegisterGeneric(typeof(BaseRepository<>)).As(typeof(IBaseRepository<>)).InstancePerDependency();
-            builder.RegisterGeneric(typeof(BaseService<,>)).As(typeof(IBaseService<,>)).InstancePerDependency();
+            builder.RegisterGeneric(typeof(BaseService<,>)).As(typeof(IBaseService<,>))
+                .InstancePerDependency()
+                .EnableInterfaceInterceptors()
+                .InterceptedBy(aopTypes.ToArray());
 
             //获取Service.dll程序集服务，并注册
             var assemblyService = Assembly.LoadFrom(serviceDllFile);
             builder.RegisterAssemblyTypes(assemblyService)
                 .AsImplementedInterfaces()
                 .InstancePerDependency()
-                .PropertiesAutowired();
+                .PropertiesAutowired()
+                .EnableInterfaceInterceptors()
+                .InterceptedBy(aopTypes.ToArray());
 
             //Repository.dll程序集服务，并注册
             var assemblyRepositry = Assembly.LoadFrom(repositoryDllFile);

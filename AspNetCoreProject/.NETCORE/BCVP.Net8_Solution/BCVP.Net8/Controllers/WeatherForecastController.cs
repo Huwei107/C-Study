@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BCVP.Net8.Controllers
 {
-    [ApiController]
-    [Route("v1/[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ApiControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IBaseService<Role, RoleVo> _roleService;
 
-        public IBaseService<Role, RoleVo> _roleServiceObj {  get; set; }
+        public IBaseService<Role, RoleVo> _roleServiceObj { get; set; }
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, 
             IBaseService<Role,RoleVo> roleService)
