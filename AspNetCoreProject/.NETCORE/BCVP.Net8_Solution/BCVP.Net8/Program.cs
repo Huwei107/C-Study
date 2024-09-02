@@ -1,16 +1,18 @@
-
+global using BCVP.Net8.Common.Core;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BCVP.Net8.Common;
 using BCVP.Net8.Common.Option;
 using BCVP.Net8.Extension;
 using BCVP.Net8.Extensions;
+using BCVP.Net8.Extensions.ServiceExtensions;
 using BCVP.Net8.IService;
 using BCVP.Net8.Repository;
 using BCVP.Net8.Service;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+
 
 namespace BCVP.Net8
 {
@@ -31,8 +33,9 @@ namespace BCVP.Net8
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     hostingContext.Configuration.ConfigureApplication();
-                })
-                ;
+                });
+            builder.ConfigureApplication();
+
             //¿ªÆô¿ØÖÆÆ÷
             builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 
@@ -62,6 +65,8 @@ namespace BCVP.Net8
 
 
             var app = builder.Build();
+            app.ConfigureApplication();
+            app.UseApplicationSetup();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

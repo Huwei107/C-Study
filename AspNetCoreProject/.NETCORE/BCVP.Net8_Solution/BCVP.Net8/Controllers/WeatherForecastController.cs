@@ -17,8 +17,8 @@ namespace BCVP.Net8.Controllers
 
         public IBaseService<Role, RoleVo> _roleServiceObj { get; set; }
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, 
-            IBaseService<Role,RoleVo> roleService,
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,
+            IBaseService<Role, RoleVo> roleService,
             IOptions<RedisOptions> redisOptions)
         {
             _logger = logger;
@@ -38,11 +38,14 @@ namespace BCVP.Net8.Controllers
 
             //var roleList = await _roleService.Query();
 
-            var roleList = await _roleServiceObj.Query();
-            var redisEnable = AppSettings.app(new string[] { "Redis", "Enable" });
-            var redisConnectionString = AppSettings.app(new string[] { "Redis", "ConnectionString" });
+            //var roleList = await _roleServiceObj.Query();
+            //var redisEnable = AppSettings.app(new string[] { "Redis", "Enable" });
+            //var redisConnectionString = AppSettings.app(new string[] { "Redis", "ConnectionString" });
+            //var redisOptons = _redisOptions.Value;
 
-            var redisOptons = _redisOptions.Value;
+            var roleServiceObjNew = App.GetService<IBaseService<Role, RoleVo>>(false);
+            var roleList = await roleServiceObjNew.Query();
+            var redisOptons = App.GetOptions<RedisOptions>();
 
             return roleList;
         }
