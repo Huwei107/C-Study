@@ -15,7 +15,7 @@ namespace BCVP.Net8.Controllers
         private readonly IBaseService<Role, RoleVo> _roleService;
         private readonly IOptions<RedisOptions> _redisOptions;
 
-        public IBaseService<Role, RoleVo> _roleServiceObj { get; set; }
+        //public IBaseService<Role, RoleVo> _roleServiceObj { get; set; }
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger,
             IBaseService<Role, RoleVo> roleService,

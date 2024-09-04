@@ -37,8 +37,9 @@ namespace BCVP.Net8
             builder.ConfigureApplication();
 
             //开启控制器
+            //Replace是要把IControllerActivator不用DefaultControllerActivator 实现，而是ServiceBasedControllerActivator实现
             builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
-
+            //builder.Services.AddControllers().AddControllersAsServices();
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -60,8 +61,6 @@ namespace BCVP.Net8
             //builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseSerivce<,>));
             //builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             #endregion
-
-            //Autofac依赖注入
 
 
             var app = builder.Build();
