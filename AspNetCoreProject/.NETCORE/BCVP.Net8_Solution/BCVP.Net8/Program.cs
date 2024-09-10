@@ -4,6 +4,7 @@ using Autofac.Extensions.DependencyInjection;
 using BCVP.Net8.Common;
 using BCVP.Net8.Common.Option;
 using BCVP.Net8.Extension;
+using BCVP.Net8.Extension.ServiceExtensions;
 using BCVP.Net8.Extensions;
 using BCVP.Net8.Extensions.ServiceExtensions;
 using BCVP.Net8.IService;
@@ -55,6 +56,9 @@ namespace BCVP.Net8
             builder.Services.AddSingleton(new AppSettings(builder.Configuration));
             //配置IOptions
             builder.Services.AddAllOptionRegister();
+
+            //缓存
+            builder.Services.AddCacheSetup();
 
             #region 原生依赖注入
             //Scoped 从请求开始到结束 
