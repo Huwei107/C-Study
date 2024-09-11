@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BCVP.Net8.Common\BCVP.Net8.Common.csproj" />
     <ProjectReference Include="..\BCVP.Net8.Model\BCVP.Net8.Model.csproj" />
   </ItemGroup>
 
