@@ -18,7 +18,10 @@ namespace BCVP.Net8.Service
             _baseRepository = baseRepository;
         }
 
-
+        /// <summary>
+        /// 查询实体
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<TVo>> Query()
         {
             //var baseRepo = new BaseRepository<TEntity>();
@@ -27,6 +30,17 @@ namespace BCVP.Net8.Service
             var data = await _baseRepository.Query();
             var bo = _mapper.Map<List<TVo>>(data);
             return bo;
+        }
+
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task<long> Add(TEntity entity)
+        {
+            var id = await _baseRepository.Add(entity);
+            return id;
         }
     }
 }

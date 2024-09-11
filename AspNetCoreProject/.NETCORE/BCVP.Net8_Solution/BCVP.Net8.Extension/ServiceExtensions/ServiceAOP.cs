@@ -110,7 +110,7 @@ namespace BCVP.Net8.Extension
 
             await Task.Run(() =>
             {
-                Console.WriteLine("执行成功-->" + JsonConvert.SerializeObject(apiLogAopInfo));
+                //Console.WriteLine("执行成功-->" + JsonConvert.SerializeObject(apiLogAopInfo));
             });
         }
 
