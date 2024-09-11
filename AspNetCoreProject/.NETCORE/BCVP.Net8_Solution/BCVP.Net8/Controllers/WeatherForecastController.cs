@@ -41,7 +41,7 @@ namespace BCVP.Net8.Controllers
             //var roleService = new BaseSerivce<Role, RoleVo>(_mapper);
             //var roleList = await roleService.Query();
 
-            //var roleList = await _roleService.Query();
+            var roleList = await _roleService.Query();
 
             //var roleList = await _roleServiceObj.Query();
             //var redisEnable = AppSettings.app(new string[] { "Redis", "Enable" });
@@ -52,20 +52,20 @@ namespace BCVP.Net8.Controllers
             //var roleList = await roleServiceObjNew.Query();
             //var redisOptons = App.GetOptions<RedisOptions>();
 
-            var cachKey = "cach-key";
-            List<string> cachKeys = await _caching.GetAllCacheKeysAsync();
-            await Console.Out.WriteLineAsync("全部keys --> "+ JsonConvert.SerializeObject(cachKeys));
+            //var cachKey = "cach-key";
+            //List<string> cachKeys = await _caching.GetAllCacheKeysAsync();
+            //await Console.Out.WriteLineAsync("全部keys --> "+ JsonConvert.SerializeObject(cachKeys));
 
-            await Console.Out.WriteLineAsync("添加一个缓存");
-            await _caching.SetStringAsync(cachKey, "你好！！！！");
-            await Console.Out.WriteLineAsync("全部keys --> " + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
-            await Console.Out.WriteLineAsync("当前key内容 -->" + JsonConvert.SerializeObject(await _caching.GetStringAsync(cachKey)));
+            //await Console.Out.WriteLineAsync("添加一个缓存");
+            //await _caching.SetStringAsync(cachKey, "你好！！！！");
+            //await Console.Out.WriteLineAsync("全部keys --> " + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
+            //await Console.Out.WriteLineAsync("当前key内容 -->" + JsonConvert.SerializeObject(await _caching.GetStringAsync(cachKey)));
 
-            await Console.Out.WriteLineAsync("删除一个缓存");
-            await _caching.RemoveAsync(cachKey);
-            await Console.Out.WriteLineAsync("全部keys --> " + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
+            //await Console.Out.WriteLineAsync("删除一个缓存");
+            //await _caching.RemoveAsync(cachKey);
+            //await Console.Out.WriteLineAsync("全部keys --> " + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
 
-            return null;
+            return roleList;
         }
     }
 }

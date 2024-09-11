@@ -60,6 +60,9 @@ namespace BCVP.Net8
             //缓存
             builder.Services.AddCacheSetup();
 
+            //sqlsugar
+            builder.Services.AddSqlsugarSetup();
+
             #region 原生依赖注入
             //Scoped 从请求开始到结束 
             //builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseSerivce<,>));

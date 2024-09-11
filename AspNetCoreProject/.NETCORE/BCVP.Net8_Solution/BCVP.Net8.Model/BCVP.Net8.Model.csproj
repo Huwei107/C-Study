@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BCVP.Net8.Common\BCVP.Net8.Common.csproj" />
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.168-preview20" />
   </ItemGroup>
 
 </Project>
