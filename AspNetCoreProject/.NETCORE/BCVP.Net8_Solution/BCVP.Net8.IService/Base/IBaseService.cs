@@ -1,9 +1,12 @@
 ﻿using BCVP.Net8.Model;
+using SqlSugar;
 
 namespace BCVP.Net8.IService
 {
     public interface IBaseService<TEntity, TVo>
     {
+        ISqlSugarClient Db { get; }
+
         /// <summary>
         /// 新增实体
         /// </summary>

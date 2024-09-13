@@ -1,6 +1,7 @@
 ﻿using BCVP.Net8.Common;
 using BCVP.Net8.IService;
 using BCVP.Net8.Model;
+using BCVP.Net8.Model.Vo;
 using BCVP.Net8.Repository.UnitOfWorks;
 using BCVP.Net8.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ namespace BCVP.Net8.Controllers
             _unitOfWorkManage = unitOfWorkManage;
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<object> Get()
         {
             try
@@ -31,6 +32,9 @@ namespace BCVP.Net8.Controllers
                 using var uow = _unitOfWorkManage.CreateUnitOfWork();
                 var roles = await _roleService.Query();
                 Console.WriteLine($"1 first time : the count of role is :{roles.Count}");
+
+                //什么是事务，什么是工作单元
+                //事务的传播形式，
 
 
                 Console.WriteLine($"insert a data into the table role now.");
@@ -64,11 +68,11 @@ namespace BCVP.Net8.Controllers
             return "ok";
         }
 
-        //[HttpGet]
-        //public async Task<object> TestTranPropagation()
-        //{
-        //    return await _userService.TestTranPropagation();
-        //}
+        [HttpGet("[action]")]
+        public async Task<object> TestTranPropagation()
+        {
+            return await _userService.TestTranPropagation();
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BCVP.Net8.Model;
+using BCVP.Net8.Model.Vo;
 
 namespace BCVP.Net8.Extension
 {
@@ -14,8 +15,14 @@ namespace BCVP.Net8.Extension
         {
             CreateMap<Role, RoleVo>()
                 .ForMember(x => x.RoleName, y => y.MapFrom(z => z.Name));
-            CreateMap<User, UserVo>()
+
+            CreateMap<SysUserInfo, UserVo>()
                 .ForMember(x => x.UserName, y => y.MapFrom(z => z.Name));
+            CreateMap<UserVo, SysUserInfo>()
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.UserName));
+
+            CreateMap<Department, DepartmentVo>();
+            CreateMap<DepartmentVo, Department>();
         }
     }
 }

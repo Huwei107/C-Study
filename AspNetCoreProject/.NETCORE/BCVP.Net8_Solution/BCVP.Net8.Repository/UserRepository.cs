@@ -5,11 +5,10 @@ namespace BCVP.Net8.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public async Task<List<User>> Query()
+        public async Task<List<SysUserInfo>> Query()
         {
-            await Task.CompletedTask;
             var data = "[{\"Id\":18 ,\"Name\" : \"zhangliang\"}]";
-            return JsonConvert.DeserializeObject<List<User>>(data) ?? new List<User>();
+            return JsonConvert.DeserializeObject<List<SysUserInfo>>(data) ?? new List<SysUserInfo>();
         }
     }
 }

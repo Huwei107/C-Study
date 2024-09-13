@@ -3,6 +3,7 @@ using BCVP.Net8.IService;
 using BCVP.Net8.Model;
 using BCVP.Net8.Repository;
 using Newtonsoft.Json;
+using SqlSugar;
 
 namespace BCVP.Net8.Service
 {
@@ -11,6 +12,8 @@ namespace BCVP.Net8.Service
 
         private readonly IMapper _mapper;
         private readonly IBaseRepository<TEntity> _baseRepository;
+
+        public ISqlSugarClient Db => _baseRepository.Db;
 
         public BaseService(IMapper mapper, IBaseRepository<TEntity> baseRepository)
         {

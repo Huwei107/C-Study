@@ -2,6 +2,7 @@
 using Autofac.Extras.DynamicProxy;
 using BCVP.Net8.IService;
 using BCVP.Net8.Repository;
+using BCVP.Net8.Repository.UnitOfWorks;
 using BCVP.Net8.Service;
 using System.Reflection;
 
@@ -40,6 +41,11 @@ namespace BCVP.Net8.Extension
             builder.RegisterAssemblyTypes(assemblyRepositry)
                 .AsImplementedInterfaces()
                 .InstancePerDependency()
+                .PropertiesAutowired();
+
+            builder.RegisterType<UnitOfWorkManage>().As<IUnitOfWorkManage>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope()
                 .PropertiesAutowired();
         }
     }
