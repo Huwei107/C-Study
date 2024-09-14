@@ -80,7 +80,7 @@ namespace BCVP.Net8
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            //¥¶¿Ìtoken
             app.UseAuthorization();
 
 

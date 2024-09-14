@@ -6,12 +6,14 @@ using BCVP.Net8.IService;
 using BCVP.Net8.Model;
 using BCVP.Net8.Model.Vo;
 using BCVP.Net8.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace BCVP.Net8.Controllers
 {
+    [Authorize]
     public class WeatherForecastController : ApiControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
