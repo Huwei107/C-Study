@@ -16,23 +16,26 @@ namespace BCVP.Net8.Controllers
     {
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IBaseService<Role, RoleVo> _roleService;
+        private readonly IBaseService<AuditSqlLog, AuditSqlLogVo> _aduitSqlLogService;
         private readonly IOptions<RedisOptions> _redisOptions;
         private readonly ICaching _caching;
 
-        //public IBaseService<Role, RoleVo> _roleServiceObj { get; set; }
+        public IBaseService<Role, RoleVo>? _roleServiceObj { get; set; }
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger,
             IBaseService<Role, RoleVo> roleService,
+            IBaseService<AuditSqlLog, AuditSqlLogVo> aduitSqlLogService,
             IOptions<RedisOptions> redisOptions,
             ICaching caching)
         {
             _logger = logger;
             _roleService = roleService;
+            _aduitSqlLogService = aduitSqlLogService;
             _redisOptions = redisOptions;
             _caching = caching;
         }
 
-        [HttpGet(Name = "UserList")]
+        [HttpGet("[action]")]
         public async Task<object> GetUserList()
         {
             //var userSerivce = new UserService();
@@ -67,6 +70,23 @@ namespace BCVP.Net8.Controllers
             //await Console.Out.WriteLineAsync("È«²¿keys --> " + JsonConvert.SerializeObject(await _caching.GetAllCacheKeysAsync()));
 
             return roleList;
+        }
+
+        [HttpGet("[action]")]
+        public async Task<object> GetAuditSqlLogList()
+        {
+            TimeSpan timeSpan = DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var id = timeSpan.TotalSeconds.ObjToLong();
+            await _aduitSqlLogService.AddSplit(new AuditSqlLog()
+            {
+                Id = id,
+                DateTime = Convert.ToDateTime("2023-12-23"),
+            });
+
+            var resultList = await _aduitSqlLogService.QuerySplit(t => t.DateTime <= Convert.ToDateTime("2023-12-24"));
+
+            Console.WriteLine("api request end...");
+            return resultList;
         }
     }
 }

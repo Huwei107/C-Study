@@ -21,8 +21,9 @@ namespace BCVP.Net8.Extension
             CreateMap<UserVo, SysUserInfo>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.UserName));
 
-            CreateMap<Department, DepartmentVo>();
-            CreateMap<DepartmentVo, Department>();
+            //CreateMap<Department, DepartmentVo>();
+            //CreateMap<DepartmentVo, Department>();
+            CreateMap<AuditSqlLog, AuditSqlLogVo>();
         }
     }
 }

@@ -4,6 +4,7 @@ using BCVP.Net8.Model;
 using BCVP.Net8.Repository;
 using Newtonsoft.Json;
 using SqlSugar;
+using System.Linq.Expressions;
 
 namespace BCVP.Net8.Service
 {
@@ -44,6 +45,16 @@ namespace BCVP.Net8.Service
         {
             var id = await _baseRepository.Add(entity);
             return id;
+        }
+
+        public async Task<List<TEntity>> QuerySplit(Expression<Func<TEntity, bool>> whereExpression, string orderByFields = null)
+        {
+            return await _baseRepository.QuerySplit(whereExpression, orderByFields);
+        }
+
+        public async Task<List<long>> AddSplit(TEntity entity)
+        {
+            return await _baseRepository.AddSplit(entity);
         }
     }
 }
