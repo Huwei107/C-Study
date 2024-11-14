@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "单例模式test", "单例模式test\单例模式test.csproj", "{1B3CDCF4-2EF3-4FC3-BAD3-89AE010AE281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "工厂模式test", "工厂模式test\工厂模式test.csproj", "{C85ECA8C-B2F2-4D80-95FE-8F92C84F1A1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "工厂模式test", "工厂模式test\工厂模式test.csproj", "{C85ECA8C-B2F2-4D80-95FE-8F92C84F1A1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lock关键词test", "lock关键词test\lock关键词test.csproj", "{49559A97-6BBF-478A-BDEC-2A563B6EB766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C85ECA8C-B2F2-4D80-95FE-8F92C84F1A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C85ECA8C-B2F2-4D80-95FE-8F92C84F1A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C85ECA8C-B2F2-4D80-95FE-8F92C84F1A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49559A97-6BBF-478A-BDEC-2A563B6EB766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49559A97-6BBF-478A-BDEC-2A563B6EB766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49559A97-6BBF-478A-BDEC-2A563B6EB766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49559A97-6BBF-478A-BDEC-2A563B6EB766}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
